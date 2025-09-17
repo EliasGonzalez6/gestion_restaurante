@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // Valor por defecto para rol
+      protected $attributes = [
+        'roles_id' => 1,
+    ];
+
     // Campos que se pueden asignar masivamente
     protected $fillable = [
         'name',

@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Hash;
 
 Route::get('/create-user', function () {
     User::create([
-        'name' => 'Sobeida Perez',
-        'email' => 'Sobe@gmail.com',
+        'name' => 'Elias Gonzalez',
+        'email' => 'Elias@gmail.com',
         'password' => Hash::make('1234'), // Nunca guardes en texto plano
-        'dni' => '96969696',
+        'dni' => '96121155',
         'phone' => '123456789',
         'address' => 'Av. Siempre Viva 742',
-        'photo' => 'Sobe.jpg', // Podés guardar la ruta o filename
+        'photo' => 'Elias.jpg', // Podés guardar la ruta o filename
         'roles_id' => 4, // Mozo (id 2 en tu seeder de roles)
     ]);
 
-    return "✅ Usuario Sobe creado correctamente";
+    return "✅ Usuario Eli creado correctamente";
 });
 
 Route::get('/list', function () {

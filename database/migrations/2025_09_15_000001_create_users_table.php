@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('photo')->nullable(); // ruta o filename
-            $table->foreignId('roles_id')->constrained('roles')->onDelete('restrict'); // cada usuario tiene 1 rol
+            $table->foreignId('roles_id')->constrained('roles')->onDelete('restrict')->default(1); // cada usuario tiene 1 rol
             $table->rememberToken();
             $table->timestamps();
         });

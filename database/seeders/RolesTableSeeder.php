@@ -11,11 +11,30 @@ class RolesTableSeeder extends Seeder
     {
         $now = now();
 
-        DB::table('roles')->insert([
-            ['name' => 'cliente', 'description' => 'Cliente', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'mozo', 'description' => 'Mozo / Camarero', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'supervisor', 'description' => 'Supervisor', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'gerente', 'description' => 'Gerente', 'created_at' => $now, 'updated_at' => $now],
+        // Actualizamos los nombres y descripciones existentes
+        DB::table('roles')->where('id', 1)->update([
+            'name' => 'Cliente',
+            'description' => 'Cliente',
+            'updated_at' => $now
+        ]);
+
+        DB::table('roles')->where('id', 2)->update([
+            'name' => 'Mozo/ Moza',
+            'description' => 'Mozo / Camarero',
+            'updated_at' => $now
+        ]);
+
+        DB::table('roles')->where('id', 3)->update([
+            'name' => 'Supervisor',
+            'description' => 'Supervisor',
+            'updated_at' => $now
+        ]);
+
+        DB::table('roles')->where('id', 4)->update([
+            'name' => 'Gerente',
+            'description' => 'Gerente',
+            'updated_at' => $now
         ]);
     }
 }
+
