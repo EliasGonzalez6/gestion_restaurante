@@ -20,7 +20,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'photo',
-        'role_id',
+        'roles_id',
     ];
 
     // Campos ocultos (no se muestran en arrays o JSON)
@@ -35,8 +35,8 @@ class User extends Authenticatable
     ];
 
     // Relación con rol
-    public function role()
+    public function rol()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Rol::class, 'roles_id');
     }
 }

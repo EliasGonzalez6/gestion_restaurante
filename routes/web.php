@@ -1,22 +1,77 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/create-user', function () {
+    User::create([
+        'name' => 'Sobeida Perez',
+        'email' => 'Sobe@gmail.com',
+        'password' => Hash::make('1234'), // Nunca guardes en texto plano
+        'dni' => '96969696',
+        'phone' => '123456789',
+        'address' => 'Av. Siempre Viva 742',
+        'photo' => 'Sobe.jpg', // Podés guardar la ruta o filename
+        'roles_id' => 4, // Mozo (id 2 en tu seeder de roles)
+    ]);
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+    return "✅ Usuario Sobe creado correctamente";
 });
 
-require __DIR__.'/auth.php';
+Route::get('/list', function () {
+    $users = User::with('rol')->get();
+
+    $output = "<h2>Listado de Usuarios</h2><ul>";
+    foreach ($users as $user) {
+        $output .= "<li>
+            <strong>Nombre:</strong> {$user->name} <br>
+            <strong>Email:</strong> {$user->email} <br>
+            <strong>Rol:</strong> {$user->rol->name} <br>
+            <hr>
+        </li>";
+    }
+    $output .= "</ul>";
+
+    return $output;
+});
+
+Route::get('/list-users', function () {
+    $users = User::with('rol')->get();
+
+    return response()->json($users);
+});
+
+Route::get('/edit-user/{id}', function ($id) {
+    $user = User::find($id); // Buscamos el usuario por id
+
+    if (!$user) {
+        return response()->json(['error' => 'Usuario no encontrado'], 404);
+    }
+
+    // Cambiamos los datos que queramos
+    $user->roles_id = 1; // Cambiamos el rol a Supervisor (id 3)
+
+    $user->save(); // Guardamos los cambios
+
+    return response()->json([
+        'message' => 'Usuario actualizado correctamente',
+        'user' => $user->load('rol') // Cargamos la relación rol
+    ]);
+});
+
+
+Route::get('/delete-user/{id}', function ($id) {
+    $user = User::find($id);
+
+    if (!$user) {
+        return response()->json(['error' => 'Usuario no encontrado'], 404);
+    }
+
+    $user->delete(); // Borra el usuario de la base de datos
+
+    return response()->json([
+        'message' => 'Usuario borrado correctamente',
+        'deleted_user_id' => $id
+    ]);
+});
