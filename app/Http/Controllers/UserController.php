@@ -6,9 +6,23 @@ use App\Models\User;
 use App\Models\Rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller as BaseController;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
+
+     public function __construct()
+    {
+        // Middleware inline para reemplazar adminMiddleware
+        $this->middleware(function ($request, $next) {
+            if (!in_array(Auth::user()->roles_id, [3, 4])) {
+                abort(403, 'Acceso no autorizado'); // Solo Gerente o Supervisor
+            }
+            return $next($request);
+        })->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     public function index()
     {
         $users = User::with('rol')->get();

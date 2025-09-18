@@ -4,20 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 
+// Página de inicio
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome'); // 👈 importante
+})->name('welcome');
 
-// Rutas de autenticación
+// Autenticación
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-// CRUD de usuarios (solo Gerente y Supervisor → middleware admin)
-Route::middleware(['auth', 'admin'])->group(function () {
+// CRUD de usuarios (solo con auth)
+Route::middleware(['auth'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');

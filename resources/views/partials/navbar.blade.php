@@ -11,9 +11,12 @@
                 @auth
                     <li class="nav-item"><a class="nav-link" href="#">{{ Auth::user()->name }}</a></li>
 
-                    @if(in_array(Auth::user()->roles_id, [3,4]))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Usuarios</a></li>
-                    @endif
+                    @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+                            </li>
+                            @endif
+
 
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
