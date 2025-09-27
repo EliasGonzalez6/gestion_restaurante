@@ -9,7 +9,10 @@
                 @endguest
 
                 @auth
-                    <li class="nav-item"><a class="nav-link" href="#">{{ Auth::user()->name }}</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
+                    </li>
 
                     @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
                             <li class="nav-item">

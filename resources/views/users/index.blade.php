@@ -24,7 +24,7 @@
             <td>{{ $user->id }}</td>
             <td>
                 @if($user->photo)
-                    <img src="{{ asset('storage/'.$user->photo) }}" width="50">
+                    <img src="{{ Storage::url($user->photo) }}" width="50" style="object-fit:cover;max-height:50px;max-width:50px;" class="rounded-circle border">
                 @endif
             </td>
             <td>{{ $user->name }}</td>

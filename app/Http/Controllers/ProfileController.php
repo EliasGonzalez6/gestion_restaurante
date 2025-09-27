@@ -12,11 +12,19 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
+     * Mostrar el perfil del usuario autenticado.
+     */
+    public function show(Request $request)
+    {
+        $user = $request->user();
+    return view('users.profile.show', compact('user'));
+    }
+    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('users.profile.edit', [
             'user' => $request->user(),
         ]);
     }

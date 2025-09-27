@@ -32,7 +32,7 @@ class UserController extends BaseController
     public function create()
     {
         // Solo supervisores y gerentes pueden asignar roles administrativos
-        $roles = Rol::whereIn('id', [2, 3, 4])->get(); 
+    $roles = Rol::all();
         return view('users.create', compact('roles'));
     }
 
@@ -70,7 +70,7 @@ class UserController extends BaseController
 
     public function edit(User $user)
     {
-        $roles = Rol::whereIn('id', [2,3,4])->get();
+    $roles = Rol::all();
         return view('users.edit', compact('user','roles'));
     }
 
@@ -86,12 +86,13 @@ class UserController extends BaseController
             'roles_id'=>'required|exists:roles,id',
         ]);
 
+
+        $data = $request->only(['name','email','dni','phone','address','roles_id']);
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos','public');
-            $user->photo = $photoPath;
+            $data['photo'] = $photoPath;
         }
-
-        $user->update($request->only(['name','email','dni','phone','address','roles_id']));
+        $user->update($data);
 
         return redirect()->route('users.index');
     }
