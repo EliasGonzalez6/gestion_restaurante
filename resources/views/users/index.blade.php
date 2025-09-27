@@ -23,9 +23,10 @@
         <tr>
             <td>{{ $user->id }}</td>
             <td>
-                @if($user->photo)
-                    <img src="{{ Storage::url($user->photo) }}" width="50" style="object-fit:cover;max-height:50px;max-width:50px;" class="rounded-circle border">
-                @endif
+                @php
+                    $photo = $user->photo ? Storage::url($user->photo) : asset('storage/photos/fotousuario.png');
+                @endphp
+                <img src="{{ $photo }}" width="50" style="object-fit:cover;max-height:50px;max-width:50px;" class="rounded-circle border">
             </td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>

@@ -18,6 +18,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // CRUD de usuarios (solo con auth)
 Route::middleware(['auth'])->group(function () {
+    // Perfil de usuario autenticado
+    Route::get('/profile/edit', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');

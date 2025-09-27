@@ -10,8 +10,14 @@
 
                 @auth
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
+                    <li class="nav-item d-flex align-items-center">
+                        @php
+                            $photo = Auth::user()->photo ? asset('storage/'.Auth::user()->photo) : asset('storage/photos/fotousuario.png');
+                        @endphp
+                        <a class="nav-link d-flex align-items-center" href="{{ route('profile.show') }}">
+                            <img src="{{ $photo }}" width="32" height="32" class="rounded-circle me-2" style="object-fit:cover;">
+                            {{ Auth::user()->name }}
+                        </a>
                     </li>
 
                     @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))

@@ -18,7 +18,9 @@
                 <li class="list-group-item"><strong>DNI:</strong> {{ $user->dni }}</li>
                 <li class="list-group-item"><strong>Teléfono:</strong> {{ $user->phone }}</li>
                 <li class="list-group-item"><strong>Dirección:</strong> {{ $user->address }}</li>
-                <li class="list-group-item"><strong>Rol:</strong> {{ $user->rol->name ?? '' }}</li>
+            <div class="mt-3 text-center">
+                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Editar perfil</a>
+            </div>
             </ul>
         </div>
     </div>
