@@ -35,12 +35,17 @@
             <td>{{ $user->address }}</td>
             <td>{{ $user->rol->name }}</td>
             <td>
-                <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">Editar</a>
-                <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar usuario?')">Borrar</button>
-                </form>
+                @php $isSupervisor = Auth::user()->roles_id == 3; @endphp
+                @if(!($user->roles_id == 4 && $isSupervisor))
+                    <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">Editar</a>
+                @endif
+                @if(Auth::user()->roles_id == 4)
+                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar usuario?')">Borrar</button>
+                    </form>
+                @endif
             </td>
         </tr>
         @endforeach

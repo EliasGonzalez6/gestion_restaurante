@@ -26,6 +26,20 @@
             <label for="address" class="form-label">Dirección</label>
             <input type="text" name="address" class="form-control" value="{{ old('address', $user->address) }}">
         </div>
+        <hr>
+        <h5 class="mt-4">Cambiar contraseña</h5>
+        <div class="mb-3">
+            <label for="current_password" class="form-label">Contraseña actual</label>
+            <input type="password" name="current_password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Nueva contraseña</label>
+            <input type="password" name="password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="password_confirmation" class="form-label">Confirmar nueva contraseña</label>
+            <input type="password" name="password_confirmation" class="form-control">
+        </div>
         <div class="mb-3">
             <label for="photo" class="form-label">Foto de perfil</label><br>
             @if($user->photo)

@@ -46,6 +46,15 @@ class ProfileController extends Controller
             $data['photo'] = $photoPath;
         }
 
+        // Si se quiere cambiar la contraseña
+        if ($request->filled('current_password') || $request->filled('password') || $request->filled('password_confirmation')) {
+            $request->validate([
+                'current_password' => ['required', 'current_password'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+
         $user->update($data);
 
         return Redirect::route('profile.show')->with('status', 'profile-updated');

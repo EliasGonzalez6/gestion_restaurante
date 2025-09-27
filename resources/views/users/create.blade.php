@@ -40,7 +40,9 @@
             <label for="roles_id" class="form-label">Rol</label>
             <select name="roles_id" class="form-select" required>
                 @foreach($roles as $rol)
-                    <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                    @if(!(Auth::user()->roles_id == 3 && $rol->id == 4))
+                        <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
