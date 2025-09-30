@@ -65,7 +65,10 @@ class AdminMenuController extends Controller
     public function editItem(MenuItem $item)
     {
         $categories = Category::with('menuItems')->orderBy('name')->get();
-        return view('admin.menu', compact('categories', 'item'));
+        return view('admin.menu', [
+            'categories' => $categories,
+            'editItem' => $item
+        ]);
     }
 
     public function updateItem(Request $request, MenuItem $item)

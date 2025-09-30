@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                         @endif
-                        @if(in_array(Auth::user()->roles_id, [2,3,4]))
+                        @if(in_array(Auth::user()->roles_id, [3,4]))
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center" href="{{ route('admin.menu.index') }}">
                                     <i class="bi bi-list-ul me-1"></i> Menú
