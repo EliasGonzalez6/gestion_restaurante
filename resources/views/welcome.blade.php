@@ -22,7 +22,7 @@
                     <div class="row">
                         @forelse($category->menuItems as $item)
                             <div class="col-12 mb-4">
-                                <div class="card flex-row align-items-center menu-item-card position-relative p-2" style="min-height: 140px;">
+                                <div class="card flex-row align-items-center menu-item-card position-relative p-2{{ $item->is_out ? ' agotado' : '' }}" style="min-height: 140px;">
                                     @if($item->photo)
                                         <div class="menu-img-container me-3" style="width: 140px; min-width: 140px; height: 110px; overflow: hidden; border-radius: 10px;">
                                             <img src="{{ asset('storage/'.$item->photo) }}" class="h-100 w-100" style="object-fit:cover;">
@@ -33,16 +33,19 @@
                                             <h5 class="card-title mb-0">{{ $item->name }}</h5>
                                             @auth
                                                 @if(Auth::user()->roles_id > 1)
-                                                    <button class="btn btn-outline-secondary btn-sm p-0 ms-2 toggle-agotado" title="Marcar como no disponible" style="vertical-align:middle; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%;">
-                                                        <i class="bi bi-eye-slash" style="font-size:1.3rem;"></i>
-                                                    </button>
+                                                    <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST" class="d-inline toggle-agotado-form">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-secondary btn-sm p-0 ms-2 toggle-agotado" title="@if($item->is_out) Marcar como disponible @else Marcar como no disponible @endif" style="vertical-align:middle; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%;">
+                                                            <i class="bi bi-eye{{ $item->is_out ? '' : '-slash' }}" style="font-size:1.3rem;"></i>
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             @endauth
                                         </div>
                                         <p class="card-text mb-1">{{ $item->description }}</p>
                                         <p class="card-text fw-bold mb-0">${{ number_format($item->price, 2) }}</p>
                                     </div>
-                                    <div class="agotado-overlay position-absolute top-50 start-50 translate-middle w-100 text-center d-none" style="z-index:2;">
+                                    <div class="agotado-overlay position-absolute top-50 start-50 translate-middle w-100 text-center{{ $item->is_out ? '' : ' d-none' }}" style="z-index:2;">
                                         <span class="badge bg-danger fs-5">No disponible</span>
                                     </div>
                                 </div>
@@ -68,19 +71,7 @@
     border-radius: 10px;
 }
 </style>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.toggle-agotado').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const card = btn.closest('.menu-item-card');
-            const overlay = card.querySelector('.agotado-overlay');
-            card.classList.toggle('agotado');
-            overlay.classList.toggle('d-none');
-        });
-    });
-});
-</script>
+
                         @empty
                             <div class="col-12"><em>No hay platos en esta categoría.</em></div>
                         @endforelse

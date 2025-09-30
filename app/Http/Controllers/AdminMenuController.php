@@ -98,6 +98,19 @@ class AdminMenuController extends Controller
         $this->authorizeItem('toggle', $item);
         $item->is_out = !$item->is_out;
         $item->save();
+        // Redirigir a la página anterior si la petición viene de otra vista
+        $referer = request()->headers->get('referer');
+        $welcomeUrl = route('welcome');
+        $adminUrl = route('admin.menu.index');
+        if ($referer) {
+            if (str_starts_with($referer, $welcomeUrl)) {
+                return redirect($referer);
+            }
+            if (str_starts_with($referer, $adminUrl)) {
+                return redirect($referer);
+            }
+        }
+        // Fallback: si no hay referer, ir al panel admin
         return redirect()->route('admin.menu.index');
     }
 

@@ -76,6 +76,7 @@
                                 <th>Descripción</th>
                                 <th>Precio</th>
                                 <th>Foto</th>
+                                <th>Agotado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -90,14 +91,23 @@
                                         <img src="{{ asset('storage/'.$item->photo) }}" width="50" style="object-fit:cover;max-height:50px;">
                                     @endif
                                 </td>
-                                <!-- Sin columna de agotado, solo acciones -->
                                 <td>
+                                    @if($item->is_out)
+                                        <span class="badge bg-danger">Agotado</span>
+                                    @else
+                                        <span class="badge bg-success">Disponible</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button class="btn btn-secondary btn-sm">@if($item->is_out) Marcar disponible @else Marcar agotado @endif</button>
+                                    </form>
                                     <a href="{{ route('admin.menu.item.edit', $item) }}" class="btn btn-warning btn-sm">Editar</a>
                                     <form action="{{ route('admin.menu.item.destroy', $item) }}" method="POST" style="display:inline;">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar plato?')">Borrar</button>
                                     </form>
-
                                 </td>
                             </tr>
                         @endforeach
