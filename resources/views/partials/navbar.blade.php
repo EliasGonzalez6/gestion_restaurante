@@ -1,8 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('welcome') }}">Restaurante</a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu">Menú</a>
+                </li>
                 @guest
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrarse</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a></li>
@@ -20,11 +26,23 @@
                         </a>
                     </li>
 
-                    @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
+
+                    @if(Auth::check() && Auth::user()->roles_id > 1)
+                        @if(in_array(Auth::user()->roles_id, [3,4]))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+                                <a class="nav-link d-flex align-items-center" href="{{ route('users.index') }}">
+                                    <i class="bi bi-people me-1"></i> Usuarios
+                                </a>
                             </li>
-                            @endif
+                        @endif
+                        @if(in_array(Auth::user()->roles_id, [2,3,4]))
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{{ route('admin.menu.index') }}">
+                                    <i class="bi bi-list-ul me-1"></i> Menú
+                                </a>
+                            </li>
+                        @endif
+                    @endif
 
 
                     <li class="nav-item">
