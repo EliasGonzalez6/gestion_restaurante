@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('admin.dashboard')
 
-@section('content')
+@section('admin_content')
 <div class="container">
     <h1>Administrar Menú</h1>
     <div class="row">

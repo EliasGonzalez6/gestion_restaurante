@@ -27,21 +27,12 @@
                     </li>
 
 
-                    @if(Auth::check() && Auth::user()->roles_id > 1)
-                        @if(in_array(Auth::user()->roles_id, [3,4]))
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center" href="{{ route('users.index') }}">
-                                    <i class="bi bi-people me-1"></i> Usuarios
-                                </a>
-                            </li>
-                        @endif
-                        @if(in_array(Auth::user()->roles_id, [3,4]))
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center" href="{{ route('admin.menu.index') }}">
-                                    <i class="bi bi-list-ul me-1"></i> Menú
-                                </a>
-                            </li>
-                        @endif
+                    @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="{{ route('admin.menu.index') }}">
+                                <i class="bi bi-gear me-1"></i> Admin
+                            </a>
+                        </li>
                     @endif
 
 

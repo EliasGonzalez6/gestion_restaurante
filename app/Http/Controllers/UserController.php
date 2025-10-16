@@ -26,7 +26,7 @@ class UserController extends BaseController
     public function index()
     {
         $users = User::with('rol')->get();
-        return view('users.index', compact('users'));
+        return view('users.dashboard', compact('users'));
     }
 
     public function create()
