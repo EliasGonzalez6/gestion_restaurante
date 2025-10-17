@@ -40,11 +40,24 @@
             <div class="section-title">
                 <h2>Nuestro Menú</h2>
                 <p class="text-muted fs-5">Selecciona tu categoría favorita</p>
+                <!-- Botones de categorías -->
+                <div class="category-buttons-bar d-flex flex-wrap justify-content-center mb-4 gap-2">
+                    @foreach($categories as $category)
+                        <button class="category-btn" data-category-id="cat-{{ $category->id }}">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
+                </div>
             </div>
 
             @foreach($categories as $category)
-                <h3 class="text-center text-uppercase mt-5 mb-4">{{ $category->name }}</h3>
-                <div class="row">
+                <div class="category-block mb-5">
+                    <h3 id="cat-{{ $category->id }}" class="text-center text-uppercase mt-5 mb-2">{{ $category->name }}</h3>
+                    <div class="category-underline mx-auto mb-2"></div>
+                    @if(!empty($category->description))
+                        <p class="text-center text-muted fs-5 mb-2">{{ $category->description }}</p>
+                    @endif
+                    <div class="row">
                     @forelse($category->menuItems as $item)
                         <div class="col-lg-4 col-md-6">
                             <div class="dish-card {{ $item->is_out ? 'opacity-50' : '' }}">
@@ -53,24 +66,26 @@
                                         <img src="{{ asset('storage/'.$item->photo) }}" alt="{{ $item->name }}">
                                     @endif
                                     @if($item->is_out)
-                                        <span class="badge bg-danger position-absolute top-0 end-0 m-3">No disponible</span>
+                                        <span class="badge bg-danger position-absolute top-0 end-0 m-3">Agotado</span>
                                     @endif
                                 </div>
                                 <div class="dish-info">
-                                    <h3 class="dish-name">{{ $item->name }}</h3>
-                                    <p class="dish-description">{{ $item->description }}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="dish-price">${{ number_format($item->price, 2) }}</span>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h3 class="dish-name mb-0">{{ $item->name }}</h3>
                                         @auth
                                             @if(Auth::user()->roles_id > 1)
-                                                <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST">
+                                                <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST" class="ms-2">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-secondary btn-sm rounded-circle" title="{{ $item->is_out ? 'Marcar como disponible' : 'Marcar como no disponible' }}">
-                                                        <i class="bi bi-eye{{ $item->is_out ? '' : '-slash' }}"></i>
+                                                    <button type="submit" class="btn btn-outline-secondary btn-sm rounded-circle dish-eye-btn" title="{{ $item->is_out ? 'Marcar como disponible' : 'Marcar como agotado' }}">
+                                                        <i class="fa{{ $item->is_out ? 's' : 'r' }} fa-eye{{ $item->is_out ? '-slash' : '' }}"></i>
                                                     </button>
                                                 </form>
                                             @endif
                                         @endauth
+                                    </div>
+                                    <p class="dish-description">{{ $item->description }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="dish-price">${{ number_format($item->price, 2) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -87,6 +102,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Navbar scroll efecto
         const nav = document.querySelector('.navbar-custom');
         const onScroll = () => {
             if (window.scrollY > 20) nav.classList.add('scrolled');
@@ -94,8 +110,21 @@
         };
         window.addEventListener('scroll', onScroll);
         onScroll();
+
+        // Scroll suave a categoría
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const catId = this.getAttribute('data-category-id');
+                const target = document.getElementById(catId);
+                if (target) {
+                    const yOffset = -80; // Ajusta si tienes navbar fija
+                    const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            });
+        });
     });
-</script>
+    </script>
 
 </body>
 </html>
