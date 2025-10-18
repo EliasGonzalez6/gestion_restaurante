@@ -1,0 +1,61 @@
+/* Navbar minimal styles extracted to load globally */
+.navbar-custom {
+    background: #1a1a1a; /* negro */
+    padding: 1rem 0;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #f5f1e8 !important;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-block;
+}
+
+.navbar-nav .nav-link {
+    color: #f5f1e8 !important;
+    margin: 0 1rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background: #d4af37; /* dorado */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 80%;
+}
+
+/* Ensure fixed-top navbar doesn't cover content */
+body {
+    padding-top: 72px; /* adjust to navbar height */
+}
+
+@media (max-width: 768px) {
+    body { padding-top: 90px; }
+}

@@ -1,0 +1,139 @@
+:root {
+    --vinotinto: #7d1935;
+    --negro: #1a1a1a;
+    --crema: #f5f1e8;
+    --dorado: #d4af37;
+    --verde: #2d5f3f;
+    --beige: #c9b99b;
+}
+
+/* Fondo general */
+body {
+    background: url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1600') center/cover no-repeat fixed;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--crema);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding: 40px;
+}
+
+/* Filtro de color */
+body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45,95,63,0.85), rgba(26,26,26,0.9));
+    z-index: 0;
+}
+
+/* Contenedor principal */
+.register-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 25px;
+    padding: 40px 45px;
+    max-width: 640px; /* aumentado para dar más espacio a las dos columnas */
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Título */
+.register-container h2 {
+    color: var(--vinotinto);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-top: 1.8rem; /* agrega espacio arriba */
+    margin-bottom: 0.6rem; /* más separación bajo el título */
+}
+
+/* Espaciado estético */
+.register-container p.text-muted {
+    margin-bottom: 3rem; /* más separación entre subtítulo y formulario */
+}
+
+/* Más espacio entre filas del formulario */
+.register-container .row.mb-3 {
+    margin-bottom: 1.8rem; /* aumenta espacio vertical entre filas */
+}
+
+/* Espacio adicional antes del primer campo del formulario */
+.register-container form > .mb-3:first-of-type {
+    margin-top: 3rem; /* espacio adicional antes del primer campo */
+}
+
+/* Ajustes de etiquetas y campos para mejor lectura */
+.register-container .form-label {
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 0.6rem; /* separa la etiqueta del input */
+}
+
+.register-container .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.4rem; /* pequeño espacio debajo del input */
+}
+
+/* Campos del formulario */
+.register-container .form-label {
+    font-weight: 600;
+    color: var(--negro);
+}
+
+.register-container .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.register-container .form-control:focus {
+    border-color: var(--vinotinto);
+    box-shadow: 0 0 0 4px rgba(125,25,53,0.15);
+}
+
+/* Botón principal */
+.btn-register {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--vinotinto), var(--verde));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 40px; /* más espacio antes del botón para mejor equilibrio */
+    margin-bottom: 1.8rem; /* agrega espacio debajo del botón */
+}
+
+.btn-register:hover {
+    background: linear-gradient(135deg, var(--dorado), var(--vinotinto));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .register-container {
+        padding: 30px 25px;
+        max-width: 100%;
+    }
+}
+
+/* Asegurar que las dos columnas de contraseña ocupen bien el espacio en pantallas >= 768px */
+@media (min-width: 768px) {
+    .register-container .row.mb-3 > .col-md-6 {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
