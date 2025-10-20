@@ -8,8 +8,9 @@
     <!-- Bootstrap + Iconos -->
      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
 <body>
 
@@ -126,5 +127,6 @@
     });
     </script>
 
+    @include('partials.footer')
 </body>
 </html>

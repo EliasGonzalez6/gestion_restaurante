@@ -1,0 +1,247 @@
+/* ===================================
+   FOOTER STYLES - Re Chévere Digital
+   Paleta de colores:
+   - Negro: #1a1a1a
+   - Crema: #f5f1e8
+   - Dorado: #d4af37
+   =================================== */
+
+.footer-custom {
+    background: #1a1a1a;
+    color: #f5f1e8;
+    padding: 1.5rem 0 0.8rem;
+    margin-top: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Logo y marca */
+.footer-brand img {
+    height: 50px;
+    width: auto;
+    filter: brightness(1.1);
+}
+
+.footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #f5f1e8;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.footer-description {
+    color: #d1ccc1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Redes sociales */
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid #d4af37;
+    border-radius: 50%;
+    color: #d4af37;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: #d4af37;
+    color: #1a1a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Headings */
+.footer-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #d4af37;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Enlaces rápidos */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #d1ccc1;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-links a::before {
+    content: '›';
+    color: #d4af37;
+    margin-right: 0.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-links a:hover {
+    color: #d4af37;
+    padding-left: 1rem;
+}
+
+/* Información de contacto */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    color: #d1ccc1;
+    font-size: 0.95rem;
+}
+
+.footer-contact i {
+    color: #d4af37;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    min-width: 20px;
+}
+
+/* Horarios */
+.footer-schedule {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-schedule li {
+    margin-bottom: 1.2rem;
+}
+
+.footer-schedule .day {
+    display: block;
+    color: #f5f1e8;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+}
+
+.footer-schedule .time {
+    display: block;
+    color: #d4af37;
+    font-size: 0.9rem;
+}
+
+/* Línea divisoria */
+.footer-divider {
+    border: 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    margin: 1rem 0 0.8rem;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    padding-top: 0.3rem;
+}
+
+.footer-copyright {
+    color: #d1ccc1;
+    font-size: 0.9rem;
+}
+
+.footer-legal {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-legal li {
+    display: inline-block;
+}
+
+.footer-legal a {
+    color: #d1ccc1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #d4af37;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .footer-custom {
+        padding: 1.5rem 0 0.8rem;
+    }
+
+    .footer-heading {
+        margin-top: 1.5rem;
+    }
+
+    .footer-brand {
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-custom {
+        padding: 1.2rem 0 0.6rem;
+        text-align: center;
+    }
+
+    .footer-links a {
+        justify-content: center;
+    }
+
+    .footer-contact li {
+        justify-content: center;
+    }
+
+    .footer-legal {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-bottom {
+        text-align: center !important;
+    }
+}

@@ -14,7 +14,11 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#menu">Menú</a>
+                    @if(request()->routeIs('welcome'))
+                        <a class="nav-link" href="#menu">Menú</a>
+                    @else
+                        <a class="nav-link" href="{{ route('welcome') }}#menu">Menú</a>
+                    @endif
                 </li>
 
                 @guest
