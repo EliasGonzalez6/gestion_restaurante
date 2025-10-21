@@ -54,9 +54,7 @@
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Mi Perfil</a></li>
 
                             @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
-                                <li><a class="dropdown-item" href="{{ route('admin.menu.index') }}">
-                                    <i class="bi bi-gear me-2"></i>Administrar
-                                </a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.menu.index') }}">Administrar</a></li>
                             @endif
 
                             <li><hr class="dropdown-divider"></li>
@@ -64,7 +62,7 @@
                                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                     @csrf
                                     <button class="dropdown-item text-danger fw-semibold" type="submit">
-                                        <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
+                                        Cerrar Sesión
                                     </button>
                                 </form>
                             </li>
