@@ -321,7 +321,7 @@
         }
 
         .dish-img {
-            height: 250px;
+            height: 200px;
             overflow: hidden;
             position: relative;
         }
@@ -350,7 +350,7 @@
         }
 
         .dish-info {
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .dish-category {
@@ -364,16 +364,16 @@
 
         .dish-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--negro);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .dish-description {
             color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
         }
 
         .dish-footer {
@@ -383,7 +383,7 @@
         }
 
         .dish-price {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--vinotinto);
             font-weight: 700;
         }

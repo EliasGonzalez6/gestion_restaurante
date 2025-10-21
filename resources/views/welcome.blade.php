@@ -62,7 +62,7 @@
                     @endif
                     <div class="row g-4">
                     @forelse($category->menuItems as $item)
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="dish-card h-100 {{ $item->is_out ? 'opacity-50' : '' }}">
                                 <div class="dish-img">
                                     @if($item->photo)
