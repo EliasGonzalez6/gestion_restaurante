@@ -1,3 +1,9 @@
+/* Evitar que los botones del navbar se partan en escritorio */
+@media (min-width: 992px) {
+    .navbar-nav .nav-link.whitespace-nowrap {
+        white-space: nowrap;
+    }
+}
 @media (max-width: 991.98px) {
     .hero-section {
         margin-top: 70px;

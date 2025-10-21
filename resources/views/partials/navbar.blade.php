@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav align-items-center">
+            <ul class="navbar-nav align-items-center flex-md-row gap-md-3">
                 <li class="nav-item mx-2">
                     @if(request()->routeIs('welcome'))
                         <a class="nav-link" href="#menu">Menú</a>
@@ -31,10 +31,10 @@
 
                 @guest
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
+                        <a class="nav-link whitespace-nowrap" href="{{ route('register') }}">Registrarse</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                        <a class="nav-link whitespace-nowrap" href="{{ route('login') }}">Iniciar Sesión</a>
                     </li>
                 @endguest
 
