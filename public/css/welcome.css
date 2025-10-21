@@ -1,3 +1,8 @@
+@media (max-width: 991.98px) {
+    .hero-section {
+        margin-top: 70px;
+    }
+}
 /* Eliminado: .category-btn-col para dejar solo Bootstrap */
 /* Ocultar flecha del dropdown del usuario en el navbar */
 /* Línea dorada animada para el botón del usuario en el navbar (solo visible en hover) */
