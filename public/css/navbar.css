@@ -64,6 +64,47 @@
     width: 80%;
 }
 
+/* Forzar override final: muy alta especificidad para dropdown dentro del navbar */
+.navbar-custom .dropdown-menu.show > .dropdown-item,
+.navbar-custom .dropdown-menu .dropdown-item.active,
+.navbar-custom .dropdown-menu .dropdown-item:active,
+.navbar-custom .dropdown-menu .dropdown-item:hover,
+.navbar-custom .dropdown-menu .dropdown-item:focus {
+    background-color: rgba(212,175,55,0.08) !important;
+    color: #1a1a1a !important;
+}
+
+/* Estilos mejorados para el dropdown */
+.navbar-custom .dropdown-menu {
+    background: #fff !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+}
+
+/* Target más específico al dropdown de usuario */
+.navbar-custom .dropdown-menu .dropdown-item {
+    color: #1a1a1a !important;
+    transition: all 0.2s ease !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar-custom .dropdown-menu .dropdown-item:hover,
+.navbar-custom .dropdown-menu .dropdown-item:focus,
+.navbar-custom .dropdown-menu .dropdown-item:active {
+    background-color: rgba(212,175,55,0.25) !important;
+    color: #1a1a1a !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Mantener Cerrar Sesión en rojo y sin alteraciones */
+.navbar-custom ul[aria-labelledby="navUserDropdown"] .text-danger {
+    color: #c92a2a !important;
+}
+
 /* Asegurar suficiente espacio en el navbar para escritorio */
 @media (min-width: 992px) {
     /* Mantener la misma altura que en welcome: altura mínima explícita para emparejar visualmente */

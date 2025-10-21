@@ -4,9 +4,15 @@
         white-space: nowrap;
     }
 }
+/* Ajustes responsivos */
 @media (max-width: 991.98px) {
     .hero-section {
-        margin-top: 70px;
+        margin-top: 0 !important; /* Eliminar margen superior */
+    }
+    /* Asegurar que el carrusel esté pegado al navbar */
+    .navbar-custom + #heroCarousel,
+    .navbar-custom + .hero-section {
+        margin-top: 0 !important;
     }
 }
 /* Eliminado: .category-btn-col para dejar solo Bootstrap */

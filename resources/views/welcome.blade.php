@@ -9,6 +9,7 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
@@ -18,7 +19,7 @@
     @include('partials.navbar')
 
     {{-- CARRUSEL --}}
-    <div id="heroCarousel" class="carousel slide hero-section mb-4" data-bs-ride="carousel">
+    <div id="heroCarousel" class="carousel slide hero-section mb-4 position-relative" data-bs-ride="carousel" style="top: 0;">
         <div class="carousel-inner">
             <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600');">
                 <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">

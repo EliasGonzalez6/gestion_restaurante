@@ -51,10 +51,18 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                            <li><a class="dropdown-item" href="{{ route('profile.show') }}">Mi Perfil</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                    Mi Perfil
+                                </a>
+                            </li>
 
                             @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
-                                <li><a class="dropdown-item" href="{{ route('admin.menu.index') }}">Administrar</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.menu.index') }}">
+                                        Administrar
+                                    </a>
+                                </li>
                             @endif
 
                             <li><hr class="dropdown-divider"></li>
