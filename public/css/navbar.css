@@ -1,6 +1,12 @@
+/* Variables compartidas */
+:root {
+    --dorado: #d4af37;
+    --crema: #f5f1e8;
+}
+
 /* Botón hamburguesa dorado Bootstrap */
 .navbar-toggler {
-    border-color: #d4af37 !important;
+    border-color: var(--dorado) !important;
 }
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212,175,55,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
@@ -35,12 +41,18 @@
 }
 
 .navbar-nav .nav-link {
-    color: #f5f1e8 !important;
+    color: var(--crema) !important;
     margin: 0 1rem;
     font-weight: 400;
     transition: all 0.3s ease;
     position: relative;
     white-space: nowrap; /* Evita que las palabras se rompan en múltiples líneas */
+}
+
+/* Hover dorado consistente en todas las vistas */
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link:focus {
+    color: var(--dorado) !important;
 }
 
 /* Clase específica para evitar que los botones se partan */
@@ -55,13 +67,39 @@
     height: 2px;
     bottom: -5px;
     left: 50%;
-    background: #d4af37; /* dorado */
+    background: var(--dorado); /* dorado */
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
 
 .navbar-nav .nav-link:hover::after {
     width: 80%;
+}
+
+/* Efecto de línea dorada específico para el usuario (dropdown) */
+#navUserDropdown {
+    position: relative;
+    transition: color 0.3s ease;
+}
+#navUserDropdown::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background: transparent;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+#navUserDropdown:hover::after,
+#navUserDropdown:focus::after {
+    width: 80%;
+    background: var(--dorado);
+}
+#navUserDropdown:hover,
+#navUserDropdown:focus {
+    color: var(--dorado) !important;
 }
 
 /* Forzar override final: muy alta especificidad para dropdown dentro del navbar */
@@ -121,6 +159,8 @@
     }
 
     .navbar-nav .nav-link {
+        font-family: 'Montserrat', 'Poppins', sans-serif !important;
+        font-size: 1rem !important; /* Igualar tamaño a welcome */
         padding: 0.5rem 0.75rem; /* Padding uniforme */
         display: inline-block; /* Asegurar que sea inline-block */
     }
@@ -132,6 +172,19 @@
     /* Asegurar que el contenedor del navbar tenga suficiente ancho */
     .navbar-collapse {
         flex-grow: 1;
+    }
+
+    /* Tipografía y tamaño del nombre de usuario para emparejar welcome */
+    .navbar-custom .nav-username {
+        font-family: 'Montserrat', 'Poppins', sans-serif !important;
+        font-size: 1rem !important;
+    }
+
+    /* Marca igual que en welcome */
+    .navbar-custom .brand-text {
+        font-family: 'Playfair Display', serif !important;
+        font-size: 1.8rem !important;
+        font-weight: 700;
     }
 }
 
