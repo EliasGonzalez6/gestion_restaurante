@@ -23,8 +23,11 @@ body {
 /* Solo en escritorio: ajustar para el navbar fijo */
 @media (min-width: 992px) {
     body {
-        padding-top: 120px; /* Compensar el navbar fijo en escritorio */
+        padding-top: 100px; /* Compensar el navbar fijo en escritorio */
+        /* Mantener centrado vertical como en login para que el espacio percibido sea el mismo */
+        align-items: center;
     }
+    /* Mismo comportamiento que login: sin margen extra en el contenedor */
 }
 
 /* Filtro de color */
@@ -134,6 +137,13 @@ body::before {
     .register-container {
         padding: 30px 25px;
         max-width: 100%;
+    }
+}
+
+/* Evitar que el navbar fijo se superponga al formulario en tablet y móvil */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 90px; /* coincide con la regla general del navbar para móviles */
     }
 }
 

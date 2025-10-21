@@ -8,7 +8,7 @@
 /* Navbar minimal styles extracted to load globally */
 .navbar-custom {
     background: #1a1a1a; /* negro */
-    padding: 1rem 0;
+    padding: 1rem 0; /* Altura base del navbar */
     box-shadow: 0 2px 15px rgba(0,0,0,0.3);
 }
 
@@ -66,20 +66,28 @@
 
 /* Asegurar suficiente espacio en el navbar para escritorio */
 @media (min-width: 992px) {
+    /* Mantener la misma altura que en welcome: altura mínima explícita para emparejar visualmente */
+    .navbar-custom {
+        min-height: 80px; /* Ajustado para emparejar visualmente con el welcome */
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        align-items: center; /* Centrar el contenido verticalmente dentro del navbar */
+    }
     .navbar-nav {
         gap: 0.5rem; /* Espaciado entre elementos del menú */
         flex-wrap: nowrap !important; /* Evitar que los elementos se envuelvan */
     }
-    
+
     .navbar-nav .nav-link {
         padding: 0.5rem 0.75rem; /* Padding uniforme */
         display: inline-block; /* Asegurar que sea inline-block */
     }
-    
+
     .navbar-nav .nav-item {
         flex-shrink: 0; /* Evitar que los items se compriman */
     }
-    
+
     /* Asegurar que el contenedor del navbar tenga suficiente ancho */
     .navbar-collapse {
         flex-grow: 1;

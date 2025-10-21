@@ -114,3 +114,10 @@ body::before {
         max-width: 100%;
     }
 }
+
+/* Evitar que el navbar fijo se superponga al formulario en tablet y móvil */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 115px; /* coincide con la regla general del navbar para móviles */
+    }
+}
