@@ -1,3 +1,4 @@
+/* Eliminado: .category-btn-col para dejar solo Bootstrap */
 /* Ocultar flecha del dropdown del usuario en el navbar */
 /* Línea dorada animada para el botón del usuario en el navbar (solo visible en hover) */
 #navUserDropdown {
@@ -46,10 +47,9 @@
     justify-content: center;
 }
 /* === Botones de Categoría Menú === */
+/* .category-buttons-bar: solo margen, sin flex ni gap para no interferir con Bootstrap */
 .category-buttons-bar {
     margin-bottom: 2rem;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
 .category-btn {
@@ -66,8 +66,10 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     outline: none;
-    display: inline-block;
+    width: 100%;
 }
+
+
 
 
 .category-btn:hover, .category-btn:focus {
@@ -85,24 +87,16 @@
 }
 
 @media (max-width: 768px) {
-    .category-buttons-bar {
-        justify-content: flex-start;
-    }
     .category-btn {
-        flex: 1 1 30%;
-        min-width: 100px;
-        max-width: 33%;
-        margin: 5px 2px;
         font-size: 15px;
         padding: 10px 0;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .category-btn {
         font-size: 14px;
         padding: 8px 0;
-        min-width: 90px;
     }
 }
 :root {

@@ -1,16 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-    <div class="container">
-        {{-- LOGO: usa una versión blanca del logo en storage --}}
-        <a class="navbar-brand" href="{{ route('welcome') }}">
-            <img src="{{ asset('storage/photos/Logo.png') }}" alt="Re Chévere" height="40" class="me-2 d-inline-block align-text-top">
-            <span class="brand-text">Re Chévere Digital</span>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+    <div class="container-fluid px-3">
+        <div class="row w-100 align-items-center flex-nowrap gx-0">
+            <div class="col-9 col-sm-10 col-md-6">
+                {{-- LOGO y nombre: en móvil/tablet en columna, en escritorio en fila --}}
+                <a class="navbar-brand mb-0 w-100 d-flex flex-column flex-md-row align-items-center" href="{{ route('welcome') }}">
+                    <img src="{{ asset('storage/photos/Logo.png') }}" alt="Re Chévere" height="40" class="me-0 me-md-2 d-inline-block align-text-top">
+                    <span class="brand-text d-block text-break text-center text-md-start mt-1 mt-md-0">Re Chévere Digital</span>
+                </a>
+            </div>
+            <div class="col-3 col-sm-2 col-md-6 d-flex justify-content-end align-items-center">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #d4af37;">
+                    <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="6" width="30" height="3" rx="1.5" fill="#d4af37"/>
+                        <rect y="13.5" width="30" height="3" rx="1.5" fill="#d4af37"/>
+                        <rect y="21" width="30" height="3" rx="1.5" fill="#d4af37"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item mx-2">

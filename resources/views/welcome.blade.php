@@ -18,35 +18,37 @@
     @include('partials.navbar')
 
     {{-- CARRUSEL --}}
-    <div id="heroCarousel" class="carousel slide hero-section" data-bs-ride="carousel">
+    <div id="heroCarousel" class="carousel slide hero-section mb-4" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600');">
-                <div class="hero-content">
-                    <h1>Sabores que te hacen sentir en casa 🇻🇪✨</h1>
-                    <a href="#menu" class="hero-btn">Explora nuestro menú</a>
+                <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
+                    <h1 class="display-5 fw-bold text-light mb-3">Sabores que te hacen sentir en casa 🇻🇪✨</h1>
+                    <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Explora nuestro menú</a>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');">
-                <div class="hero-content">
-                    <h1>Tradición y Sabor en Cada Bocado</h1>
-                    <a href="#menu" class="hero-btn">Ver especialidades</a>
+                <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
+                    <h1 class="display-6 fw-bold text-light mb-3">Tradición y Sabor en Cada Bocado</h1>
+                    <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Ver especialidades</a>
                 </div>
             </div>
         </div>
     </div>
 
     {{-- SECCIÓN MENÚ --}}
-    <section class="menu-section" id="menu">
+    <section class="menu-section py-5" id="menu">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestro Menú</h2>
-                <p class="text-muted fs-5">Selecciona tu categoría favorita</p>
+            <div class="section-title mb-4">
+                <h2 class="text-center mb-2">Nuestro Menú</h2>
+                <p class="text-muted fs-5 text-center">Selecciona tu categoría favorita</p>
                 <!-- Botones de categorías -->
-                <div class="category-buttons-bar d-flex flex-wrap justify-content-center mb-4 gap-2">
+                <div class="row mb-4 gx-2 gy-2 category-buttons-bar justify-content-center">
                     @foreach($categories as $category)
-                        <button class="category-btn" data-category-id="cat-{{ $category->id }}">
-                            {{ $category->name }}
-                        </button>
+                        <div class="col-4 col-md-3 col-lg-2">
+                            <button class="category-btn w-100" data-category-id="cat-{{ $category->id }}">
+                                {{ $category->name }}
+                            </button>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -58,13 +60,13 @@
                     @if(!empty($category->description))
                         <p class="text-center text-muted fs-5 mb-2">{{ $category->description }}</p>
                     @endif
-                    <div class="row">
+                    <div class="row g-4">
                     @forelse($category->menuItems as $item)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="dish-card {{ $item->is_out ? 'opacity-50' : '' }}">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="dish-card h-100 {{ $item->is_out ? 'opacity-50' : '' }}">
                                 <div class="dish-img">
                                     @if($item->photo)
-                                        <img src="{{ asset('storage/'.$item->photo) }}" alt="{{ $item->name }}">
+                                        <img src="{{ asset('storage/'.$item->photo) }}" alt="{{ $item->name }}" class="img-fluid rounded w-100">
                                     @endif
                                     @if($item->is_out)
                                         <span class="badge bg-danger position-absolute top-0 end-0 m-3">Agotado</span>
@@ -72,7 +74,7 @@
                                 </div>
                                 <div class="dish-info">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h3 class="dish-name mb-0">{{ $item->name }}</h3>
+                                        <h3 class="dish-name mb-0 fs-5">{{ $item->name }}</h3>
                                         @auth
                                             @if(Auth::user()->roles_id > 1)
                                                 <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST" class="ms-2">
@@ -84,9 +86,9 @@
                                             @endif
                                         @endauth
                                     </div>
-                                    <p class="dish-description">{{ $item->description }}</p>
+                                    <p class="dish-description small">{{ $item->description }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="dish-price">${{ number_format($item->price, 2) }}</span>
+                                        <span class="dish-price fw-bold">${{ number_format($item->price, 2) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +96,7 @@
                     @empty
                         <div class="col-12 text-center"><em>No hay platos en esta categoría.</em></div>
                     @endforelse
+                    </div>
                 </div>
             @endforeach
         </div>
