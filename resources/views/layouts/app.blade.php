@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    @if (request()->routeIs('profile.edit'))
+        <link rel="stylesheet" href="{{ asset('css/edit-profile.css') }}">
+    @endif
 </head>
 <body>
     @include('partials.navbar')
