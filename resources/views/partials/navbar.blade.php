@@ -51,15 +51,19 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+
                             <li>
-                                <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('profile.show') }}">
+                                    <i class="fas fa-user-circle" style="color:#222;font-size:1.1em;"></i>
                                     Mi Perfil
                                 </a>
                             </li>
 
+
                             @if(Auth::check() && in_array(Auth::user()->roles_id, [3,4]))
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('admin.menu.index') }}">
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('admin.menu.index') }}">
+                                        <i class="fas fa-cogs" style="color:#222;font-size:1.1em;"></i>
                                         Administrar
                                     </a>
                                 </li>
@@ -69,7 +73,8 @@
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button class="dropdown-item text-danger fw-semibold" type="submit">
+                                    <button class="dropdown-item d-flex align-items-center gap-2 text-danger fw-semibold" type="submit">
+                                        <i class="fas fa-sign-out-alt" style="color:#222;font-size:1.1em;"></i>
                                         Cerrar Sesión
                                     </button>
                                 </form>
