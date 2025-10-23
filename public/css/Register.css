@@ -35,7 +35,7 @@ body::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(45,95,63,0.85), rgba(26,26,26,0.9));
+    background: linear-gradient(135deg, rgba(125,25,53,0.85), rgba(26,26,26,0.9));
     z-index: 0;
 }
 
@@ -114,7 +114,7 @@ body::before {
 .btn-register {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, var(--vinotinto), var(--verde));
+    background: linear-gradient(135deg, var(--vinotinto), var(--negro));
     color: white;
     border: none;
     border-radius: 12px;
