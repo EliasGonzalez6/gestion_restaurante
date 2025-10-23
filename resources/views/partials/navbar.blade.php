@@ -4,17 +4,17 @@
             <div class="col-9 col-sm-10 col-md-6">
                 {{-- LOGO y nombre: en móvil/tablet en columna, en escritorio en fila --}}
                 <a class="navbar-brand mb-0 w-100 d-flex flex-column flex-md-row align-items-center" href="{{ route('welcome') }}">
-                    <img src="{{ asset('storage/photos/Logo.png') }}" alt="Re Chévere" height="40" class="me-0 me-md-2 d-inline-block align-text-top">
-                    <span class="brand-text d-block text-break text-center text-md-start mt-1 mt-md-0">Re Chévere Digital</span>
+                    <img src="{{ asset('storage/photos/Logo.png') }}" alt="Re Chévere" height="40" class="me-0 me-md-2 d-none d-lg-inline-block align-text-top logo-navbar">
+                    <span class="brand-text d-block text-break text-center text-md-start mt-0 mt-md-0">Re Chévere Digital</span>
                 </a>
             </div>
             <div class="col-3 col-sm-2 col-md-6 d-flex justify-content-end align-items-center">
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #d4af37;">
-                    <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect y="6" width="30" height="3" rx="1.5" fill="#d4af37"/>
-                        <rect y="13.5" width="30" height="3" rx="1.5" fill="#d4af37"/>
-                        <rect y="21" width="30" height="3" rx="1.5" fill="#d4af37"/>
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="hamburger-icon">
+                        <rect y="6" width="30" height="3" rx="1.5" fill="#fff"/>
+                        <rect y="13.5" width="30" height="3" rx="1.5" fill="#fff"/>
+                        <rect y="21" width="30" height="3" rx="1.5" fill="#fff"/>
                     </svg>
                 </button>
             </div>

@@ -4,18 +4,46 @@
     --crema: #f5f1e8;
 }
 
-/* Botón hamburguesa dorado Bootstrap */
+/* Botón hamburguesa blanco por defecto */
 .navbar-toggler {
+    border-color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+/* SVG hamburguesa blanco por defecto */
+.hamburger-icon rect {
+    fill: #fff;
+    transition: fill 0.3s ease;
+}
+
+/* Botón hamburguesa dorado en hover y cuando está activo */
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler[aria-expanded="true"] {
     border-color: var(--dorado) !important;
 }
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212,175,55,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+
+/* SVG dorado en hover/active */
+.navbar-toggler:hover .hamburger-icon rect,
+.navbar-toggler:focus .hamburger-icon rect,
+.navbar-toggler:active .hamburger-icon rect,
+.navbar-toggler[aria-expanded="true"] .hamburger-icon rect {
+    fill: var(--dorado);
 }
 /* Navbar minimal styles extracted to load globally */
 .navbar-custom {
     background: #1a1a1a; /* negro */
     padding: 1rem 0; /* Altura base del navbar */
     box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+/* Asegurar altura consistente del navbar en móvil y tablet */
+@media (max-width: 991.98px) {
+    .navbar-custom {
+        padding: 0.8rem 0 !important; /* Altura estándar para móvil/tablet */
+        min-height: 70px;
+    }
 }
 
 
@@ -193,6 +221,58 @@ body {
     padding-top: 72px; /* adjust to navbar height */
 }
 
+@media (max-width: 991.98px) {
+    body { 
+        padding-top: 70px; 
+    }
+    /* Asegurar que no haya gap entre navbar y contenido en móvil/tablet */
+    .navbar-custom {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Transición más lenta para móvil/tablet */
+    #navUserDropdown {
+        transition: color 0.5s ease;
+    }
+    
+    #navUserDropdown::after {
+        transition: all 0.5s ease;
+    }
+    
+    /* Efecto dorado en dropdown para móvil/tablet (touch/click) */
+    #navUserDropdown:active,
+    #navUserDropdown:focus,
+    #navUserDropdown.show {
+        color: var(--dorado) !important;
+        transition: color 0.5s ease;
+    }
+    
+    #navUserDropdown:active::after,
+    #navUserDropdown:focus::after,
+    #navUserDropdown.show::after {
+        width: 80%;
+        background: var(--dorado);
+        transition: all 0.5s ease;
+    }
+    
+    /* Dropdown items con efecto dorado al tocar/click en móvil/tablet - transición más lenta */
+    .navbar-custom .dropdown-menu .dropdown-item {
+        transition: all 0.4s ease !important;
+        -webkit-tap-highlight-color: rgba(212,175,55,0.25);
+        cursor: pointer;
+    }
+    
+    .navbar-custom .dropdown-menu .dropdown-item:active,
+    .navbar-custom .dropdown-menu .dropdown-item:focus,
+    .navbar-custom .dropdown-menu .dropdown-item.active {
+        background-color: rgba(212,175,55,0.35) !important;
+        color: #1a1a1a !important;
+        transition: all 0.4s ease !important;
+    }
+}
+
 @media (max-width: 768px) {
-    body { padding-top: 90px; }
+    body { 
+        padding-top: 70px; 
+    }
 }

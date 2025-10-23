@@ -220,6 +220,31 @@
     .footer-social {
         justify-content: center;
     }
+    
+    /* Efecto dorado en enlaces rápidos para móvil/tablet (click y hover) */
+    .footer-links a:active,
+    .footer-links a:focus {
+        color: #d4af37 !important;
+        padding-left: 1rem;
+    }
+    
+    .footer-links a:active::before,
+    .footer-links a:focus::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Asegurar que los enlaces sociales sean táctiles */
+    .social-link {
+        cursor: pointer;
+        pointer-events: all;
+    }
+    
+    .social-link:active {
+        background: #d4af37;
+        color: #1a1a1a;
+        transform: translateY(-3px);
+    }
 }
 
 @media (max-width: 767px) {

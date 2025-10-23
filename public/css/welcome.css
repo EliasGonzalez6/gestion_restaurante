@@ -14,6 +14,11 @@
     .navbar-custom + .hero-section {
         margin-top: 0 !important;
     }
+    /* Eliminar espacio entre navbar y carrusel */
+    #heroCarousel {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
 }
 /* Eliminado: .category-btn-col para dejar solo Bootstrap */
 /* Ocultar flecha del dropdown del usuario en el navbar */
