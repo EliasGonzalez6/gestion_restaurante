@@ -2,6 +2,7 @@
 
 @section('admin_content')
 <link rel="stylesheet" href="{{ asset('css/admin-users.css') }}">
+<link rel="stylesheet" href="{{ asset('css/delete-modal.css') }}">
 
 <div class="main-content">
     <!-- Header de Página -->
@@ -66,10 +67,10 @@
                                 </a>
                             @endif
                             @if(Auth::user()->roles_id == 4 && $user->roles_id != 4)
-                                <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-delete" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?')">
+                                    <button type="button" class="btn-delete" onclick="showDeleteModal('{{ $user->id }}', '{{ $user->name }}')">
                                         <i class="fas fa-trash"></i> Borrar
                                     </button>
                                 </form>
@@ -82,4 +83,59 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Confirmación de Eliminación -->
+<div class="delete-modal-overlay" id="deleteModal">
+    <div class="delete-modal">
+        <div class="delete-modal-header">
+            <div class="delete-modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="delete-modal-title">Confirmar Eliminación</h2>
+        </div>
+        <div class="delete-modal-body">
+            <p class="delete-modal-message">¿Está seguro de que desea eliminar este usuario?</p>
+            <p class="delete-modal-item" id="deleteItemName"></p>
+            <p class="delete-modal-warning">
+                <i class="fas fa-info-circle"></i> Esta acción no se puede deshacer
+            </p>
+        </div>
+        <div class="delete-modal-footer">
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="hideDeleteModal()">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button type="button" class="modal-btn modal-btn-delete" onclick="confirmDelete()">
+                <i class="fas fa-trash"></i> Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentDeleteFormId = null;
+
+function showDeleteModal(userId, userName) {
+    currentDeleteFormId = 'delete-form-' + userId;
+    document.getElementById('deleteItemName').textContent = userName;
+    document.getElementById('deleteModal').classList.add('show');
+}
+
+function hideDeleteModal() {
+    document.getElementById('deleteModal').classList.remove('show');
+    currentDeleteFormId = null;
+}
+
+function confirmDelete() {
+    if (currentDeleteFormId) {
+        document.getElementById(currentDeleteFormId).submit();
+    }
+}
+
+// Cerrar modal al hacer clic fuera de él
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideDeleteModal();
+    }
+});
+</script>
 @endsection
