@@ -1,177 +1,284 @@
 @extends('admin.dashboard')
 
 @section('admin_content')
+<link rel="stylesheet" href="{{ asset('css/admin-menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/delete-modal.css') }}">
 
-<div class="container">
-    <h1>Administrar Menú</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <h4>Categorías</h4>
+<div class="main-content">
+    <!-- HEADER DE PÁGINA -->
+    <div class="page-header">
+        <h1><i class="fas fa-utensils"></i> Gestión de Menú</h1>
+        <p>Administra categorías y platos del restaurante</p>
+    </div>
+
+    <!-- SECCIÓN CATEGORÍAS -->
+    <div class="admin-card">
+        <h3 class="card-title">
+            <i class="fas fa-tags"></i> Categorías
+        </h3>
+        
+        <!-- Formulario para agregar/editar categoría -->
+        <form class="category-form" id="formAgregarCategoria" 
+              action="@if(isset($category)){{ route('admin.menu.category.update', $category) }}@else{{ route('admin.menu.category.store') }}@endif" 
+              method="POST">
+            @csrf
             @if(isset($category))
-            <form action="{{ route('admin.menu.category.update', $category) }}" method="POST">
-                @csrf
                 @method('PUT')
-                <div class="mb-2">
-                    <input type="text" name="name" class="form-control" value="{{ $category->name }}" placeholder="Nombre de la categoría" required>
-                </div>
-                <div class="mb-2">
-                    <input type="text" name="description" class="form-control" value="{{ $category->description }}" placeholder="Descripción (opcional)">
-                </div>
-                <button class="btn btn-primary btn-sm">Actualizar</button>
-                <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary btn-sm">Cancelar</a>
-            </form>
-            @else
-            <form action="{{ route('admin.menu.category.store') }}" method="POST">
-                @csrf
-                <div class="mb-2">
-                    <input type="text" name="name" class="form-control" placeholder="Nombre de la categoría" required>
-                </div>
-                <div class="mb-2">
-                    <input type="text" name="description" class="form-control" placeholder="Descripción (opcional)">
-                </div>
-                <button class="btn btn-success btn-sm">Agregar</button>
-            </form>
             @endif
-            <ul class="list-group mt-3">
-                @foreach($categories as $category)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>
-                            <strong>{{ $category->name }}</strong>
-                            @if($category->description)
-                                <br><small class="text-muted">{{ $category->description }}</small>
-                            @endif
-                        </span>
-                        <span>
-                            <a href="{{ route('admin.menu.category.edit', $category) }}" class="btn btn-warning btn-sm">Editar</a>
-                            @if(Auth::user()->roles_id == 4)
-                            <form id="delete-category-form-{{ $category->id }}" action="{{ route('admin.menu.category.destroy', $category) }}" method="POST" style="display:inline;">
-                                @csrf @method('DELETE')
-                                <button type="button" class="btn btn-danger btn-sm" onclick="showDeleteModal('category', '{{ $category->id }}', '{{ $category->name }}')">Borrar</button>
-                            </form>
-                            @endif
-                        </span>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label class="form-label">Nombre de la Categoría *</label>
+                    <input 
+                        type="text" 
+                        name="name"
+                        class="form-control" 
+                        id="nombreCategoria"
+                        value="@if(isset($category)){{ $category->name }}@endif"
+                        placeholder="Ej: Entradas, Platos Principales"
+                        required>
+                </div>
+                <div class="col-md-5 mb-3">
+                    <label class="form-label">Descripción (Opcional)</label>
+                    <input 
+                        type="text" 
+                        name="description"
+                        class="form-control" 
+                        id="descripcionCategoria"
+                        value="@if(isset($category)){{ $category->description }}@endif"
+                        placeholder="Breve descripción de la categoría">
+                </div>
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button type="submit" class="btn-primary-custom w-100" id="btnSubmitCategoria">
+                        @if(isset($category))
+                            <i class="fas fa-save"></i> Actualizar
+                        @else
+                            <i class="fas fa-plus"></i> Agregar
+                        @endif
+                    </button>
+                </div>
+            </div>
+            @if(isset($category))
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </div>
+            @endif
+        </form>
+
+        <!-- Separador visual -->
+        <div class="section-separator"></div>
+
+        <!-- Subtítulo de lista -->
+        <h5 class="list-subtitle">
+            <i class="fas fa-list"></i> Categorías Existentes
+        </h5>
+
+        <!-- Lista de categorías -->
+        <div class="category-list" id="listaCategorias">
+            @foreach($categories as $cat)
+            <div class="category-item">
+                <div class="category-content">
+                    <div class="category-name">{{ $cat->name }}</div>
+                    <div class="category-desc">{{ $cat->description ?? 'Sin descripción' }}</div>
+                </div>
+                <div class="category-actions">
+                    <a href="{{ route('admin.menu.category.edit', $cat) }}" class="btn-edit-small" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    @if(Auth::user()->roles_id == 4)
+                    <form id="delete-category-form-{{ $cat->id }}" action="{{ route('admin.menu.category.destroy', $cat) }}" method="POST" style="display:inline;">
+                        @csrf @method('DELETE')
+                        <button type="button" class="btn-delete-small" title="Borrar" onclick="showDeleteModal('category', '{{ $cat->id }}', '{{ $cat->name }}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                    @endif
+                </div>
+            </div>
+            @endforeach
         </div>
-        <div class="col-md-8">
-            <h4>Platos</h4>
+    </div>
+
+    <!-- SECCIÓN PLATOS -->
+    <div class="admin-card">
+        <h3 class="card-title">
+            <i class="fas fa-hamburger"></i> Platos
+        </h3>
+        
+        <!-- Formulario para agregar/editar plato -->
+        <form class="dish-form" id="formAgregarPlato" 
+              action="@if(isset($editItem)){{ route('admin.menu.item.update', $editItem) }}@else{{ route('admin.menu.item.store') }}@endif" 
+              method="POST" 
+              enctype="multipart/form-data">
+            @csrf
             @if(isset($editItem))
-            <form action="{{ route('admin.menu.item.update', $editItem) }}" method="POST" enctype="multipart/form-data">
-                @csrf
                 @method('PUT')
-                <div class="row">
-                    <div class="col-md-4 mb-2">
-                        <select name="category_id" class="form-select" required>
-                            <option value="">Categoría</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}" {{ $editItem->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="text" name="name" class="form-control" value="{{ $editItem->name }}" placeholder="Nombre del plato" required>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="number" name="price" class="form-control" value="{{ $editItem->price }}" placeholder="Precio" step="0.01" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 mb-2">
-                        <input type="text" name="description" class="form-control" value="{{ $editItem->description }}" placeholder="Descripción (opcional)">
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="file" name="photo" class="form-control">
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-sm">Actualizar</button>
-                <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary btn-sm">Cancelar</a>
-            </form>
-            @else
-            <form action="{{ route('admin.menu.item.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-4 mb-2">
-                        <select name="category_id" class="form-select" required>
-                            <option value="">Categoría</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre del plato" required>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="number" name="price" class="form-control" placeholder="Precio" step="0.01" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 mb-2">
-                        <input type="text" name="description" class="form-control" placeholder="Descripción (opcional)">
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <input type="file" name="photo" class="form-control">
-                    </div>
-                </div>
-                <button class="btn btn-success btn-sm">Agregar</button>
-            </form>
             @endif
-            <div class="mt-4">
-                @foreach($categories as $category)
-                    <h5>{{ $category->name }}</h5>
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Precio</th>
-                                <th>Foto</th>
-                                <th>Agotado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($category->menuItems as $item)
-                            <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->description }}</td>
-                                <td>${{ number_format($item->price, 2) }}</td>
-                                <td>
-                                    @if($item->photo)
-                                        <img src="{{ asset('storage/'.$item->photo) }}" width="50" style="object-fit:cover;max-height:50px;">
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($item->is_out)
-                                        <span class="badge bg-danger">Agotado</span>
-                                    @else
-                                        <span class="badge bg-success">Disponible</span>
-                                    @endif
-                                </td>
-                                <td>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Categoría *</label>
+                    <select class="form-select" name="category_id" id="categoriaPlato" required>
+                        <option value="" selected>Seleccionar categoría</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}" @if(isset($editItem) && $editItem->category_id == $cat->id) selected @endif>{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Nombre del Plato *</label>
+                    <input 
+                        type="text" 
+                        name="name"
+                        class="form-control" 
+                        id="nombrePlato"
+                        value="@if(isset($editItem)){{ $editItem->name }}@endif"
+                        placeholder="Ej: Arepa Reina Pepiada"
+                        required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Descripción (Opcional)</label>
+                    <input 
+                        type="text" 
+                        name="description"
+                        class="form-control" 
+                        id="descripcionPlato"
+                        value="@if(isset($editItem)){{ $editItem->description }}@endif"
+                        placeholder="Descripción breve">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Precio *</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input 
+                            type="number" 
+                            name="price"
+                            class="form-control" 
+                            id="precioPlato"
+                            value="@if(isset($editItem)){{ $editItem->price }}@endif"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                            required>
+                    </div>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label class="form-label">Foto del Plato @if(!isset($editItem))@endif</label>
+                    <input 
+                        type="file" 
+                        name="photo"
+                        class="form-control" 
+                        id="fotoPlato"
+                        accept="image/*">
+                    @if(isset($editItem) && $editItem->photo)
+                        <small class="text-muted">Foto actual: {{ basename($editItem->photo) }}</small>
+                    @endif
+                </div>
+                <div class="col-md-4 mb-3 d-flex align-items-end">
+                    <button type="submit" class="btn-primary-custom w-100" id="btnSubmitPlato">
+                        @if(isset($editItem))
+                            <i class="fas fa-save"></i> Actualizar Plato
+                        @else
+                            <i class="fas fa-plus"></i> Agregar Plato
+                        @endif
+                    </button>
+                </div>
+            </div>
+            @if(isset($editItem))
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </div>
+            @endif
+        </form>
+
+        <!-- Separador visual -->
+        <div class="section-separator"></div>
+
+        <!-- Subtítulo de lista -->
+        <h5 class="list-subtitle">
+            <i class="fas fa-list"></i> Platos del Menú
+        </h5>
+
+        <!-- Tabla de platos -->
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaPlatosBody">
+                    @foreach($categories as $cat)
+                        @foreach($cat->menuItems as $item)
+                        <tr>
+                            <td>
+                                @if($item->photo)
+                                    <img src="{{ asset('storage/'.$item->photo) }}" 
+                                         alt="{{ $item->name }}" 
+                                         class="dish-photo">
+                                @else
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200" 
+                                         alt="{{ $item->name }}" 
+                                         class="dish-photo">
+                                @endif
+                            </td>
+                            <td>
+                                <strong class="dish-name-table">{{ $item->name }}</strong>
+                            </td>
+                            <td>
+                                <span class="dish-desc-table">{{ $item->description ?? 'Sin descripción' }}</span>
+                            </td>
+                            <td>
+                                <strong class="dish-price-table">${{ number_format($item->price, 2) }}</strong>
+                            </td>
+                            <td>
+                                <div class="status-container">
+                                    <span class="@if($item->is_out)badge-soldout @else badge-available @endif">
+                                        @if($item->is_out)Agotado @else Disponible @endif
+                                    </span>
                                     <form action="{{ route('admin.menu.item.toggle', $item) }}" method="POST" style="display:inline;">
                                         @csrf
-                                        <button class="btn btn-secondary btn-sm">@if($item->is_out) Marcar disponible @else Marcar agotado @endif</button>
+                                        <div class="form-check form-switch mt-2">
+                                            <input class="form-check-input" type="checkbox" @if(!$item->is_out) checked @endif onchange="this.form.submit()">
+                                        </div>
                                     </form>
-                                    <a href="{{ route('admin.menu.item.edit', $item) }}" class="btn btn-warning btn-sm">Editar</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{{ route('admin.menu.item.edit', $item) }}" class="btn-edit-table">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
                                     @if(Auth::user()->roles_id == 4)
                                     <form id="delete-item-form-{{ $item->id }}" action="{{ route('admin.menu.item.destroy', $item) }}" method="POST" style="display:inline;">
                                         @csrf @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="showDeleteModal('item', '{{ $item->id }}', '{{ $item->name }}')">Borrar</button>
+                                        <button type="button" class="btn-delete-table" onclick="showDeleteModal('item', '{{ $item->id }}', '{{ $item->name }}')">
+                                            <i class="fas fa-trash"></i> Borrar
+                                        </button>
                                     </form>
                                     @endif
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         @endforeach
-                        </tbody>
-                    </table>
-                @endforeach
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 
 <!-- Modal de Confirmación de Eliminación -->
 <div class="delete-modal-overlay" id="deleteModal">
