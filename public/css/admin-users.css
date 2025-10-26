@@ -1,0 +1,321 @@
+/* =============================
+   GESTIÓN DE USUARIOS - ADMIN
+   ============================= */
+
+:root {
+    --vinotinto: #7d1935;
+    --negro: #1a1a1a;
+    --crema: #f5f1e8;
+    --dorado: #d4af37;
+    --beige: #c9b99b;
+}
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+.main-content {
+    position: fixed;
+    top: 76px;           /* Comienza justo debajo del navbar */
+    left: 260px;         /* Comienza después del sidebar */
+    right: 0;            /* Se extiende hasta el borde derecho */
+    bottom: 0;           /* Se extiende hasta abajo */
+    padding: 2rem 3rem;
+    background: var(--crema);
+    overflow-y: auto;    /* Scroll si el contenido es largo */
+}
+
+/* ========== HEADER DE PÁGINA ========== */
+.page-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--vinotinto);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-header h1 i {
+    font-size: 2rem;
+}
+
+.page-header p {
+    color: #666;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* ========== CARD DE TABLA ========== */
+.admin-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.card-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--crema);
+}
+
+.card-header-custom h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--vinotinto);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* ========== TABLA ========== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0 !important;
+}
+
+.table-custom thead {
+    background: var(--vinotinto) !important;
+}
+
+.table-custom thead th {
+    color: white !important;
+    padding: 1.2rem 1rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    white-space: nowrap;
+    background: var(--vinotinto) !important;
+}
+
+.table-custom thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+.table-custom thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+.table-custom tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border: none;
+    border-bottom: 1px solid var(--crema);
+    font-size: 0.95rem;
+}
+
+.table-custom tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table-custom tbody tr:hover {
+    background: var(--crema);
+}
+
+.table-custom tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========== FOTO DE USUARIO ========== */
+.user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--dorado);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== BADGES DE ROL ========== */
+.badge-admin,
+.badge-user,
+.badge-supervisor {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-admin {
+    background: var(--vinotinto);
+    color: white;
+}
+
+.badge-supervisor {
+    background: var(--dorado);
+    color: var(--negro);
+}
+
+.badge-user {
+    background: var(--beige);
+    color: var(--negro);
+}
+
+/* ========== BOTONES ========== */
+.btn-add-user {
+    background: var(--vinotinto);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-add-user:hover {
+    background: var(--dorado);
+    color: var(--negro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-edit {
+    background: var(--dorado);
+    color: var(--negro);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-edit:hover {
+    background: var(--vinotinto);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.btn-edit i,
+.btn-delete i {
+    font-size: 0.8rem;
+}
+
+/* ========== RESPONSIVE ========== */
+/* ========== RESPONSIVE: TABLET (768px - 992px) ========== */
+@media (max-width: 992px) and (min-width: 769px) {
+    .main-content {
+        position: fixed;
+        top: 76px;
+        left: 0 !important;
+        right: 0;
+        bottom: 0;
+        padding: 1.5rem;
+        width: 100% !important;
+    }
+    
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ========== RESPONSIVE: MÓVIL (hasta 768px) ========== */
+@media (max-width: 768px) {
+    .main-content {
+        position: fixed;
+        top: 76px;
+        left: 0 !important;
+        right: 0;
+        bottom: 0;
+        padding: 1rem;
+        width: 100% !important;
+    }
+    
+    .page-header {
+        padding: 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .page-header p {
+        font-size: 0.9rem;
+    }
+    
+    .admin-card {
+        padding: 1rem;
+    }
+    
+    .card-header-custom {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .btn-add-user {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .table-custom {
+        font-size: 0.85rem;
+    }
+    
+    .table-custom thead th,
+    .table-custom tbody td {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .btn-edit,
+    .btn-delete {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    
+    .user-photo {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+    }
+}

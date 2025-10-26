@@ -9,6 +9,12 @@
                 </a>
             </div>
             <div class="col-3 col-sm-2 col-md-6 d-flex justify-content-end align-items-center">
+                {{-- Botón para mostrar sidebar en móvil/tablet (solo en vistas admin) --}}
+                @if(request()->routeIs('users.index') || request()->routeIs('admin.*'))
+                <button class="sidebar-toggle-btn d-lg-none me-2" type="button" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+                    <i class="fas fa-cog" style="font-size: 24px; color: #d4af37;"></i>
+                </button>
+                @endif
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="hamburger-icon">

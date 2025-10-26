@@ -14,11 +14,14 @@
     @if (request()->routeIs('profile.edit'))
         <link rel="stylesheet" href="{{ asset('css/edit-profile.css') }}">
     @endif
+    @if (request()->routeIs('users.index'))
+        <link rel="stylesheet" href="{{ asset('css/admin-users.css') }}">
+    @endif
 </head>
 <body>
     @include('partials.navbar')
 
-    <main class="py-4">
+    <main class="{{ request()->routeIs('users.*') || request()->routeIs('admin.*') ? '' : 'py-4' }}">
         @if ($errors->any())
             <div class="container">
                 <div class="alert alert-danger">

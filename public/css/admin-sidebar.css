@@ -1,0 +1,183 @@
+/* =============================
+   SIDEBAR - PANEL LATERAL ADMIN
+   ============================= */
+
+:root {
+    --vinotinto: #7d1935;
+    --negro: #1a1a1a;
+    --crema: #f5f1e8;
+    --dorado: #d4af37;
+    --beige: #c9b99b;
+}
+
+/* ========== CONTENEDOR DEL SIDEBAR ========== */
+.sidebar {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 260px;
+    height: calc(100vh - 76px);
+    background: white;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    padding: 2rem 0;
+    overflow-y: auto;
+    z-index: 100;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ========== LISTA DE MENÚ ========== */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.5rem;
+}
+
+/* ========== LINKS DEL MENÚ (Estado Normal) ========== */
+.sidebar-menu .menu-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: var(--negro);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    font-weight: 400;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+/* ========== ICONOS ========== */
+.sidebar-menu .menu-link i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    min-width: 20px;
+    transition: all 0.3s ease;
+}
+
+/* ========== HOVER (Al pasar el mouse) ========== */
+.sidebar-menu .menu-link:hover:not(.disabled) {
+    background: var(--crema);
+    color: var(--vinotinto);
+    border-left-color: var(--vinotinto);
+    padding-left: 2rem;
+}
+
+.sidebar-menu .menu-link:hover:not(.disabled) i {
+    color: var(--dorado);
+    transform: scale(1.15);
+}
+
+/* ========== ESTADO ACTIVO (Opción seleccionada) ========== */
+.sidebar-menu .menu-link.active {
+    background: var(--crema);
+    color: var(--vinotinto);
+    border-left-color: var(--vinotinto);
+    border-left-width: 4px;
+    font-weight: 600;
+}
+
+.sidebar-menu .menu-link.active i {
+    color: var(--dorado);
+}
+
+/* ========== ESTADO DESHABILITADO (Reservas y Pedidos) ========== */
+.sidebar-menu .menu-link.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    color: #999;
+}
+
+.sidebar-menu .menu-link.disabled i {
+    color: #999;
+}
+
+/* Tooltip para opciones deshabilitadas */
+.sidebar-menu .menu-link.disabled::after {
+    content: 'Próximamente';
+    position: absolute;
+    right: 1rem;
+    background: var(--beige);
+    color: var(--negro);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-menu .menu-link.disabled:hover::after {
+    opacity: 1;
+}
+
+/* ========== SCROLLBAR PERSONALIZADO ========== */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--beige);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--vinotinto);
+}
+
+/* ========== OVERLAY PARA MÓVIL ========== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 76px);
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+/* ========== BOTÓN TOGGLE SIDEBAR (MÓVIL/TABLET) ========== */
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+.sidebar-toggle-btn i {
+    transition: color 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover i {
+    color: var(--vinotinto) !important;
+}
+
+/* ========== RESPONSIVE (MÓVILES) ========== */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-260px);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+        box-shadow: 2px 0 25px rgba(0,0,0,0.3);
+    }
+}
