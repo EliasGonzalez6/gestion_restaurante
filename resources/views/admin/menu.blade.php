@@ -1,6 +1,8 @@
 @extends('admin.dashboard')
 
 @section('admin_content')
+<link rel="stylesheet" href="{{ asset('css/delete-modal.css') }}">
+
 <div class="container">
     <h1>Administrar Menú</h1>
     <div class="row">
@@ -43,9 +45,9 @@
                         <span>
                             <a href="{{ route('admin.menu.category.edit', $category) }}" class="btn btn-warning btn-sm">Editar</a>
                             @if(Auth::user()->roles_id == 4)
-                            <form action="{{ route('admin.menu.category.destroy', $category) }}" method="POST" style="display:inline;">
+                            <form id="delete-category-form-{{ $category->id }}" action="{{ route('admin.menu.category.destroy', $category) }}" method="POST" style="display:inline;">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar categoría?')">Borrar</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="showDeleteModal('category', '{{ $category->id }}', '{{ $category->name }}')">Borrar</button>
                             </form>
                             @endif
                         </span>
@@ -155,9 +157,9 @@
                                     </form>
                                     <a href="{{ route('admin.menu.item.edit', $item) }}" class="btn btn-warning btn-sm">Editar</a>
                                     @if(Auth::user()->roles_id == 4)
-                                    <form action="{{ route('admin.menu.item.destroy', $item) }}" method="POST" style="display:inline;">
+                                    <form id="delete-item-form-{{ $item->id }}" action="{{ route('admin.menu.item.destroy', $item) }}" method="POST" style="display:inline;">
                                         @csrf @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar plato?')">Borrar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="showDeleteModal('item', '{{ $item->id }}', '{{ $item->name }}')">Borrar</button>
                                     </form>
                                     @endif
                                 </td>
@@ -170,4 +172,68 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Confirmación de Eliminación -->
+<div class="delete-modal-overlay" id="deleteModal">
+    <div class="delete-modal">
+        <div class="delete-modal-header">
+            <div class="delete-modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="delete-modal-title">Confirmar Eliminación</h2>
+        </div>
+        <div class="delete-modal-body">
+            <p class="delete-modal-message" id="deleteMessage">¿Está seguro de que desea eliminar este elemento?</p>
+            <p class="delete-modal-item" id="deleteItemName"></p>
+            <p class="delete-modal-warning">
+                <i class="fas fa-info-circle"></i> Esta acción no se puede deshacer
+            </p>
+        </div>
+        <div class="delete-modal-footer">
+            <button type="button" class="modal-btn modal-btn-cancel" onclick="hideDeleteModal()">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button type="button" class="modal-btn modal-btn-delete" onclick="confirmDelete()">
+                <i class="fas fa-trash"></i> Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentDeleteFormId = null;
+
+function showDeleteModal(type, id, name) {
+    const formId = type === 'category' 
+        ? 'delete-category-form-' + id 
+        : 'delete-item-form-' + id;
+    
+    const message = type === 'category' 
+        ? '¿Está seguro de que desea eliminar esta categoría?' 
+        : '¿Está seguro de que desea eliminar este plato?';
+    
+    currentDeleteFormId = formId;
+    document.getElementById('deleteMessage').textContent = message;
+    document.getElementById('deleteItemName').textContent = name;
+    document.getElementById('deleteModal').classList.add('show');
+}
+
+function hideDeleteModal() {
+    document.getElementById('deleteModal').classList.remove('show');
+    currentDeleteFormId = null;
+}
+
+function confirmDelete() {
+    if (currentDeleteFormId) {
+        document.getElementById(currentDeleteFormId).submit();
+    }
+}
+
+// Cerrar modal al hacer clic fuera de él
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideDeleteModal();
+    }
+});
+</script>
 @endsection
