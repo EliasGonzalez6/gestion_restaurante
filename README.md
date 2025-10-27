@@ -47,7 +47,7 @@ En esta primera fase, el proyecto abarca:
 - **CRUD de productos del menú** (gestión de productos, categorías, precios e imágenes)
 - **CRUD de usuarios** (alta, baja, modificación y gestión de roles)
 
-> **Nota:** El panel administrativo y los módulos CRUD están disponibles únicamente para usuarios con roles de **Gerente, Supervisor** y los **Mesoneros** pueden marcar los platos que se encuentran disponibles o no**. Los módulos de pedidos y reservas en línea serán desarrollados en **etapas posteriores**.
+> **Nota:** El panel administrativo y los módulos CRUD están disponibles únicamente para usuarios con roles de **Gerente, Supervisor** y los **Mesoneros** pueden marcar los platos que se encuentran disponibles o no. Los módulos de pedidos y reservas en línea serán desarrollados en **etapas posteriores**.
 
 ---
 
