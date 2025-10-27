@@ -1,9 +1,7 @@
 # 🍽️ Re Chévere Digital
 
 <div align="center">
-  
-  ![Logo Re Chévere](https://www.canva.com/design/DAG3B68cul0/rXlupWHMnhlTtDtYrjNWxQ/view)
-  
+
   **Sistema de gestión digital para el restaurante Re Chévere**
   
 </div>
