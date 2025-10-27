@@ -41,17 +41,19 @@ Desarrollar un **sistema web responsivo** que permita la gestión integral de **
 En esta primera fase, el proyecto abarca:
 
 - Página principal (*Home*)
-- Módulo de **login y registro de usuarios**
-- Sistema de **roles** (dueño, gerente, mesonero y cliente)
-- **CRUD de productos del menú**
+-  Módulo de **login y registro de usuarios**
+- Sistema de **roles** (gerente, supervisor, mesonero y cliente)
+- **Panel administrativo** con acceso restringido por roles
+- **CRUD de productos del menú** (gestión de productos, categorías, precios e imágenes)
+- **CRUD de usuarios** (alta, baja, modificación y gestión de roles)
 
-> **Nota:** Los módulos de pedidos y reservas en línea serán desarrollados en **etapas posteriores**.
+> **Nota:** El panel administrativo y los módulos CRUD están disponibles únicamente para usuarios con roles de **Gerente, Supervisor** y los **Mesoneros** pueden marcar los platos que se encuentran disponibles o no**. Los módulos de pedidos y reservas en línea serán desarrollados en **etapas posteriores**.
 
 ---
 
 ## 🎨 Diseño Visual
 
-El diseño visual se inspira en la **camiseta de fútbol de la selección venezolana**, reflejando la identidad del restaurante.
+El diseño visual se inspira en el ** logo del restaurante y la camiseta de fútbol de la selección venezolana**, reflejando la identidad del restaurante.
 
 ### Paleta de Colores
 
