@@ -12,7 +12,7 @@
 
 **Re Chévere Digital** es un proyecto integrador desarrollado para el restaurante **Re Chévere**, un establecimiento gastronómico especializado en **comida tradicional venezolana**, con algunos platos argentinos.
 
-### 🎯 Problemática
+### Problemática
 
 Actualmente, la gestión del menú se realiza mediante un archivo PDF estático, lo que dificulta la actualización de precios, descripciones y fotografías de los productos. Además, los pedidos y reservas se manejan de forma manual a través de mensajes de WhatsApp y redes sociales, generando errores, demoras y desorganización administrativa.
 
