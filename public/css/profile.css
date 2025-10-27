@@ -16,7 +16,7 @@ main.py-4 {
 
 /* Fondo general */
 .profile-container {
-    background-color: #f5f0e8;
+    background-color: #f5f1e8;
     min-height: 100vh;
     padding: 3rem 0 2rem 0;
     margin: 0;
@@ -31,7 +31,7 @@ main.py-4 {
 .profile-header-section {
     position: relative;
     z-index: 1000;
-    background-color: #f5f0e8;
+    background-color: #f5f1e8;
     padding: 2.5rem 0 2rem 0;
     margin-top: 1rem;
 }
@@ -172,25 +172,17 @@ main.py-4 {
 }
 
 .profile-card {
-    background-color: #f8efe3;
+    background-color: #f5f1e8;
     border-radius: 15px;
-    padding: 2rem;
+    padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    text-align: center;
-}
-
-.profile-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #6b1c3d 0%, #d4af37 100%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .profile-card:hover {
@@ -207,7 +199,7 @@ main.py-4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.2rem;
+    flex-shrink: 0;
     box-shadow: 0 4px 12px rgba(107, 28, 61, 0.35);
 }
 
@@ -217,17 +209,22 @@ main.py-4 {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
+.profile-card-info {
+    flex: 1;
+    text-align: left;
+}
+
 .profile-card-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    color: #6b1c3d;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
 }
 
 .profile-card-content {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: #2c2c2c;
     font-weight: 500;
     word-break: break-word;
@@ -241,34 +238,40 @@ main.py-4 {
 }
 
 .profile-edit-btn {
-    background-color: #6b1c3d;
-    color: white;
+    background-color: white;
+    color: #1a1a1a;
     padding: 1rem 2.8rem;
-    border-radius: 30px;
+    border-radius: 8px;
     font-size: 1.05rem;
     font-weight: 600;
-    border: none;
+    border: 2px solid #1a1a1a;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 15px rgba(107, 28, 61, 0.3);
+    box-shadow: 0 4px 15px rgba(26, 26, 26, 0.15);
 }
 
 .profile-edit-btn svg,
 .profile-edit-btn i {
-    color: white;
-    filter: brightness(0) invert(1);
+    color: #1a1a1a;
+    filter: none;
 }
 
 .profile-edit-btn:hover {
-    background: linear-gradient(135deg, #6b1c3d 0%, #d4af37 100%);
+    background: #1a1a1a;
+    border-color: #1a1a1a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(107, 28, 61, 0.4);
+    box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
     color: white;
     text-decoration: none;
+}
+
+.profile-edit-btn:hover svg,
+.profile-edit-btn:hover i {
+    color: white;
 }
 
 /* Responsive para tablets */
@@ -306,12 +309,18 @@ main.py-4 {
     }
 
     .profile-card {
-        padding: 1.8rem;
+        padding: 1.5rem;
+        flex-direction: row;
+        gap: 1.3rem;
     }
 
     .profile-card-icon-container {
         width: 60px;
         height: 60px;
+    }
+    
+    .profile-card-icon {
+        font-size: 1.8rem;
     }
 }
 
@@ -377,6 +386,8 @@ main.py-4 {
     .profile-card {
         padding: 1.5rem;
         margin-bottom: 1rem;
+        flex-direction: row;
+        gap: 1.2rem;
     }
 
     .profile-card-icon-container {
@@ -386,6 +397,14 @@ main.py-4 {
 
     .profile-card-icon {
         font-size: 1.7rem;
+    }
+    
+    .profile-card-title {
+        font-size: 0.8rem;
+    }
+    
+    .profile-card-content {
+        font-size: 1rem;
     }
 
     .profile-edit-btn {

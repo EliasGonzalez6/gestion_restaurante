@@ -49,8 +49,10 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-envelope profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">Email</div>
-                            <div class="profile-card-content">{{ $user->email }}</div>
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">Email</div>
+                                <div class="profile-card-content">{{ $user->email }}</div>
+                            </div>
                         </div>
                     </div>
 
@@ -60,9 +62,11 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-phone profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">Teléfono</div>
-                            <div class="profile-card-content">
-                                {{ $user->phone ? $user->phone : 'No registrado' }}
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">Teléfono</div>
+                                <div class="profile-card-content">
+                                    {{ $user->phone ? $user->phone : 'No registrado' }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,9 +77,11 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-id-card profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">DNI</div>
-                            <div class="profile-card-content">
-                                {{ $user->dni ? $user->dni : 'No registrado' }}
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">DNI</div>
+                                <div class="profile-card-content">
+                                    {{ $user->dni ? $user->dni : 'No registrado' }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,9 +92,11 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-map-marker-alt profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">Dirección</div>
-                            <div class="profile-card-content">
-                                {{ $user->address ? $user->address : 'No registrado' }}
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">Dirección</div>
+                                <div class="profile-card-content">
+                                    {{ $user->address ? $user->address : 'No registrado' }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,9 +107,11 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-calendar-alt profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">Miembro desde</div>
-                            <div class="profile-card-content">
-                                {{ $user->created_at->format('d/m/Y') }}
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">Miembro desde</div>
+                                <div class="profile-card-content">
+                                    {{ $user->created_at->format('d/m/Y') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,8 +122,10 @@
                             <div class="profile-card-icon-container">
                                 <i class="fas fa-check-circle profile-card-icon"></i>
                             </div>
-                            <div class="profile-card-title">Estado de la cuenta</div>
-                            <div class="profile-card-content">Activa</div>
+                            <div class="profile-card-info">
+                                <div class="profile-card-title">Estado de la cuenta</div>
+                                <div class="profile-card-content">Activa</div>
+                            </div>
                         </div>
                     </div>
                 </div>
