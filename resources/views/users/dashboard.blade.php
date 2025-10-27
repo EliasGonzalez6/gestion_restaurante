@@ -20,6 +20,36 @@
             </a>
         </div>
         
+        <!-- Filtros y Buscador -->
+        <div class="filters-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por nombre, email o DNI..." class="search-input">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-role="all">
+                    <i class="fas fa-users"></i> Todos
+                </button>
+                <button class="filter-btn" data-role="4">
+                    <i class="fas fa-user-tie"></i> Gerentes
+                </button>
+                <button class="filter-btn" data-role="3">
+                    <i class="fas fa-user-shield"></i> Supervisores
+                </button>
+                <button class="filter-btn" data-role="2">
+                    <i class="fas fa-concierge-bell"></i> Mozos
+                </button>
+                <button class="filter-btn" data-role="1">
+                    <i class="fas fa-user"></i> Clientes
+                </button>
+            </div>
+            
+            <div class="results-counter">
+                Mostrando <span id="visibleCount">0</span> de <span id="totalCount">0</span> usuarios
+            </div>
+        </div>
+        
         <div class="table-responsive">
             <table class="table table-custom">
                 <thead>
@@ -35,9 +65,9 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="usersTableBody">
                     @foreach($users as $user)
-                    <tr>
+                    <tr data-role="{{ $user->roles_id }}" data-name="{{ strtolower($user->name) }}" data-email="{{ strtolower($user->email) }}" data-dni="{{ strtolower($user->dni ?? '') }}">
                         <td><strong>{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}</strong></td>
                         <td>
                             @php
@@ -80,6 +110,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        
+        <!-- Contador de resultados -->
+        <div class="results-counter">
+            Mostrando <span id="visibleCount">{{ count($users) }}</span> de <span id="totalCount">{{ count($users) }}</span> usuarios
         </div>
     </div>
 </div>
@@ -137,5 +172,72 @@ document.getElementById('deleteModal').addEventListener('click', function(e) {
         hideDeleteModal();
     }
 });
+
+// ========== FILTRADO Y BÚSQUEDA DE USUARIOS ==========
+const searchInput = document.getElementById('searchInput');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const tableRows = document.querySelectorAll('#usersTableBody tr');
+const totalCount = tableRows.length;
+let currentFilter = 'all';
+
+// Actualizar contador de resultados
+function updateCounter() {
+    const visibleRows = document.querySelectorAll('#usersTableBody tr:not([style*="display: none"])');
+    document.getElementById('visibleCount').textContent = visibleRows.length;
+    document.getElementById('totalCount').textContent = totalCount;
+}
+
+// Función de filtrado
+function filterUsers() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    tableRows.forEach(row => {
+        const role = row.getAttribute('data-role');
+        const name = row.getAttribute('data-name');
+        const email = row.getAttribute('data-email');
+        const dni = row.getAttribute('data-dni');
+        
+        // Verificar filtro de rol
+        const roleMatch = currentFilter === 'all' || role === currentFilter;
+        
+        // Verificar búsqueda (nombre, email o DNI)
+        const searchMatch = searchTerm === '' || 
+                           name.includes(searchTerm) || 
+                           email.includes(searchTerm) || 
+                           dni.includes(searchTerm);
+        
+        // Mostrar u ocultar fila
+        if (roleMatch && searchMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    updateCounter();
+}
+
+// Event listener para búsqueda
+searchInput.addEventListener('input', filterUsers);
+
+// Event listeners para botones de filtro
+filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Remover clase active de todos los botones
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Agregar clase active al botón clickeado
+        this.classList.add('active');
+        
+        // Actualizar filtro actual
+        currentFilter = this.getAttribute('data-role');
+        
+        // Filtrar usuarios
+        filterUsers();
+    });
+});
+
+// Inicializar contador
+updateCounter();
 </script>
 @endsection

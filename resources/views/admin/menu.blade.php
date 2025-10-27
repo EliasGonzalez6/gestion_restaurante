@@ -205,6 +205,33 @@
             <i class="fas fa-list"></i> Platos del Menú
         </h5>
 
+        <!-- FILTROS Y BÚSQUEDA -->
+        <div class="filters-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input 
+                    type="text" 
+                    id="searchDishInput" 
+                    class="search-input" 
+                    placeholder="Buscar plato por nombre...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-list"></i> Todos
+                </button>
+                @foreach($categories as $cat)
+                <button class="filter-btn" data-category="{{ $cat->id }}">
+                    <i class="fas fa-tag"></i> {{ $cat->name }}
+                </button>
+                @endforeach
+            </div>
+            
+            <div class="results-counter">
+                Mostrando <span id="visibleDishCount">0</span> de <span id="totalDishCount">0</span> platos
+            </div>
+        </div>
+
         <!-- Tabla de platos -->
         <div class="table-responsive">
             <table class="table table-custom">
@@ -221,7 +248,7 @@
                 <tbody id="tablaPlatosBody">
                     @foreach($categories as $cat)
                         @foreach($cat->menuItems as $item)
-                        <tr>
+                        <tr data-category="{{ $item->category_id }}" data-name="{{ strtolower($item->name) }}">
                             <td>
                                 @if($item->photo)
                                     <img src="{{ asset('storage/'.$item->photo) }}" 
@@ -342,5 +369,67 @@ document.getElementById('deleteModal').addEventListener('click', function(e) {
         hideDeleteModal();
     }
 });
+
+// ========== FILTRADO Y BÚSQUEDA DE PLATOS ==========
+const searchDishInput = document.getElementById('searchDishInput');
+const filterDishButtons = document.querySelectorAll('.filter-btn');
+const dishRows = document.querySelectorAll('#tablaPlatosBody tr');
+const totalDishCount = dishRows.length;
+let currentDishFilter = 'all';
+
+// Actualizar contador de resultados
+function updateDishCounter() {
+    const visibleRows = document.querySelectorAll('#tablaPlatosBody tr:not([style*="display: none"])');
+    document.getElementById('visibleDishCount').textContent = visibleRows.length;
+    document.getElementById('totalDishCount').textContent = totalDishCount;
+}
+
+// Función de filtrado de platos
+function filterDishes() {
+    const searchTerm = searchDishInput.value.toLowerCase().trim();
+    
+    dishRows.forEach(row => {
+        const category = row.getAttribute('data-category');
+        const name = row.getAttribute('data-name');
+        
+        // Verificar filtro de categoría
+        const categoryMatch = currentDishFilter === 'all' || category === currentDishFilter;
+        
+        // Verificar búsqueda por nombre
+        const searchMatch = searchTerm === '' || name.includes(searchTerm);
+        
+        // Mostrar u ocultar fila
+        if (categoryMatch && searchMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    
+    updateDishCounter();
+}
+
+// Event listener para búsqueda
+searchDishInput.addEventListener('input', filterDishes);
+
+// Event listeners para botones de filtro
+filterDishButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Remover clase active de todos los botones
+        filterDishButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Agregar clase active al botón clickeado
+        this.classList.add('active');
+        
+        // Actualizar filtro actual
+        currentDishFilter = this.getAttribute('data-category');
+        
+        // Filtrar platos
+        filterDishes();
+    });
+});
+
+// Inicializar contador
+updateDishCounter();
 </script>
 @endsection

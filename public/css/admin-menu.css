@@ -515,6 +515,107 @@
     font-size: 0.8rem;
 }
 
+/* ========== FILTROS Y BÚSQUEDA ========== */
+.filters-container {
+    background: var(--crema);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--vinotinto);
+    box-shadow: 0 0 0 3px rgba(125, 25, 53, 0.1);
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: white;
+    color: var(--negro);
+    border: 2px solid #ddd;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: var(--crema);
+    border-color: var(--vinotinto);
+    color: var(--vinotinto);
+}
+
+.filter-btn.active {
+    background: var(--vinotinto);
+    color: white;
+    border-color: var(--vinotinto);
+}
+
+.filter-btn i {
+    font-size: 0.9rem;
+}
+
+.results-counter {
+    width: 100%;
+    text-align: left;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.results-counter span {
+    font-weight: 700;
+    color: var(--vinotinto);
+}
+
 /* ========== RESPONSIVE: TABLETS (768px - 992px) ========== */
 @media (max-width: 992px) {
     .main-content {
@@ -539,6 +640,16 @@
     .category-list {
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
+    }
+    
+    /* Filtros responsive tablet */
+    .filters-container {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    
+    .search-box {
+        min-width: 200px;
     }
 }
 
@@ -604,6 +715,34 @@
     /* Formulario de platos en móvil */
     .dish-form .row > div {
         margin-bottom: 1rem !important;
+    }
+    
+    /* Filtros responsive móvil */
+    .filters-container {
+        padding: 1rem;
+        gap: 1rem;
+        flex-direction: column;
+    }
+    
+    .search-box {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .filter-buttons {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .filter-btn {
+        flex: 0 1 auto;
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .results-counter {
+        text-align: center;
+        font-size: 0.85rem;
     }
     
     /* Tabla responsive */
