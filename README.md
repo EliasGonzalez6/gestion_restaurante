@@ -53,7 +53,7 @@ En esta primera fase, el proyecto abarca:
 
 ## 🎨 Diseño Visual
 
-El diseño visual se inspira en el ** logo del restaurante y la camiseta de fútbol de la selección venezolana**, reflejando la identidad del restaurante.
+El diseño visual se inspira en el **logo del restaurante y la camiseta de fútbol de la selección venezolana**, reflejando la identidad del restaurante.
 
 ### Paleta de Colores
 
