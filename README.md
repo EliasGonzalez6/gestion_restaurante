@@ -29,9 +29,9 @@ Desarrollar un **sistema web responsivo** que permita la gestión integral de **
 ### Objetivos Específicos (Primera Etapa)
 
 - ✅ Implementar un **menú digital editable** con precios, categorías y fotografías
-- ✅ Desarrollar un **sistema de usuarios con control de roles** (dueño, gerente, mesonero y cliente)
+- ✅ Desarrollar un **sistema de usuarios con control de roles** (gerente, supervisor, mesonero y cliente)
 - ✅ Crear un **CRUD completo** para la administración de productos del menú
-- ✅ Implementar un **módulo de login seguro** con validación de credenciales
+- ✅ Implementar un **módulo de login seguro**
 - ✅ Documentar y estimar el proyecto mediante **diagramas y cronogramas**
 
 ---
@@ -155,7 +155,7 @@ La primera etapa del proyecto logró cumplir los **objetivos propuestos**, senta
 
 Agradecemos especialmente a:
 
-- 👨‍🏫 **Profesor Alberto Campagna** por su guía
+- 👨‍🏫 **Profesor Alberto Campagna** por su seguimiento y acompañamiento
 - 👫 Nuestros **amigos** por el asesoramiento técnico
 - 👨‍👩‍👧‍👦 Nuestros **familiares** por el apoyo durante todo el proceso
 - 🍽️ **Restaurante Re Chévere** por permitirnos desarrollar su nuevo sistema digital
