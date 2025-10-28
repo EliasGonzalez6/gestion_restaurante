@@ -30,7 +30,7 @@ Desarrollar un **sistema web responsivo** que permita la gestión integral de **
 
 - ✅ Implementar un **menú digital editable** con precios, categorías y fotografías
 - ✅ Desarrollar un **sistema de usuarios con control de roles** (gerente, supervisor, mesonero y cliente)
-- ✅ Crear un **CRUD completo** para la administración de productos del menú
+- ✅ Crear un **CRUD completo** para la administración de productos del menú y los usuarios
 - ✅ Implementar un **módulo de login seguro**
 - ✅ Documentar y estimar el proyecto mediante **diagramas y cronogramas**
 
