@@ -149,7 +149,7 @@ Para acceder a la metodología de trabajo, diagramas, cronograma y documentació
 
 ---
 
-## 🙏 Agradecimientos
+## 🤝 Agradecimientos
 
 La primera etapa del proyecto logró cumplir los **objetivos propuestos**, sentando las bases para la digitalización de la gestión del restaurante **Re Chévere**.
 
