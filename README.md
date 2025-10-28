@@ -99,7 +99,7 @@ Estas herramientas permitieron combinar el desarrollo técnico con una correcta 
   <tr>
     <th>Integrante</th>
     <th>Rol</th>
-    <th>Responsabilidades</th>
+    <th>Responsabilidades Principales</th>
   </tr>
   <tr>
     <td><strong>Wendy Torres</strong></td>
