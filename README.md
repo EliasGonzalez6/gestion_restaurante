@@ -135,7 +135,7 @@ Para acceder a la metodología de trabajo, diagramas, cronograma y documentació
 
 <div align="center">
   
-  ### 📖 [Ver Documentación Completa en Canva](https://www.canva.com/design/DAGybPYAfTA/fM5TMl5VD66_4xI0jZrO9A/edit?utm_content=DAGybPYAfTA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+  ### 📖 [Ver Documentación Completa](https://www.canva.com/design/DAGybPYAfTA/fM5TMl5VD66_4xI0jZrO9A/edit?utm_content=DAGybPYAfTA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
   
 </div>
 
