@@ -105,7 +105,7 @@ Estas herramientas permitieron combinar el desarrollo técnico con una correcta 
     <td><strong>Wendy Torres</strong></td>
     <td>Desarrolladora</td>
     <td>
-      • Diseño y desarrollo de frontend<br>
+      • Diseño y desarrollo del frontend<br>
       • Pruebas de funcionalidades<br>
       • Redacción de documentación técnica y académica
     </td>
