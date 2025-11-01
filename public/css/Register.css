@@ -9,7 +9,7 @@
 
 /* Fondo general */
 body {
-    background: url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1600') center/cover no-repeat fixed;
+    background: url('/storage/photos/fondologin.jpg') center/cover no-repeat fixed;
     font-family: 'Montserrat', sans-serif;
     color: var(--crema);
     display: flex;
