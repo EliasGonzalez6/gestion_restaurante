@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdminMenuController extends Controller
 {
@@ -22,7 +24,7 @@ class AdminMenuController extends Controller
 
     public function editCategory(Category $category)
     {
-        $categories = Category::with('menuItems')->orderBy('name')->get();
+        $categories = Category::with('menuItems')->orderBy('id')->get();
         return view('admin.menu', compact('categories', 'category'));
     }
 
@@ -40,6 +42,66 @@ class AdminMenuController extends Controller
     {
         $category->delete();
         return redirect()->route('admin.menu.index');
+    }
+
+    // Reordenar categorías (drag and drop)
+    public function reorderCategories(Request $request)
+    {
+        // Solo Gerentes y Supervisores pueden reordenar
+        if (!in_array(Auth::user()->roles_id, [3, 4])) {
+            return response()->json(['success' => false, 'message' => 'No autorizado'], 403);
+        }
+
+        $order = $request->input('order'); // Array de IDs en el nuevo orden
+        
+        if (!is_array($order) || empty($order)) {
+            return response()->json(['success' => false, 'message' => 'Orden inválido'], 400);
+        }
+
+        try {
+            // Obtener todas las categorías actuales ordenadas por ID
+            $categories = Category::orderBy('id')->get();
+            $currentIds = $categories->pluck('id')->toArray();
+            
+            // Si el orden no cambió, no hacer nada
+            if ($currentIds === $order) {
+                return response()->json(['success' => true, 'message' => 'Sin cambios']);
+            }
+
+            DB::transaction(function () use ($order) {
+                // Desactivar temporalmente las foreign key constraints
+                DB::statement('SET FOREIGN_KEY_CHECKS=0');
+                
+                // Usar IDs temporales muy altos para evitar conflictos
+                $tempIdBase = 900000;
+                
+                // Paso 1: Mover todas las categorías a IDs temporales
+                foreach ($order as $index => $categoryId) {
+                    $tempId = $tempIdBase + $index;
+                    DB::statement('UPDATE categories SET id = ? WHERE id = ?', [$tempId, $categoryId]);
+                    // También actualizar la FK en menu_items
+                    DB::statement('UPDATE menu_items SET category_id = ? WHERE category_id = ?', [$tempId, $categoryId]);
+                }
+                
+                // Paso 2: Mover de IDs temporales a IDs finales (1, 2, 3, ...)
+                foreach ($order as $index => $categoryId) {
+                    $tempId = $tempIdBase + $index;
+                    $finalId = $index + 1;
+                    DB::statement('UPDATE categories SET id = ? WHERE id = ?', [$finalId, $tempId]);
+                    DB::statement('UPDATE menu_items SET category_id = ? WHERE category_id = ?', [$finalId, $tempId]);
+                }
+                
+                // Reactivar las foreign key constraints
+                DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            });
+
+            return response()->json(['success' => true, 'message' => 'Orden actualizado']);
+        } catch (\Exception $e) {
+            // Asegurarse de reactivar las foreign keys en caso de error
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            Log::error('Error reordenando categorías: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 
     // --- CRUD Platos ---
@@ -64,7 +126,7 @@ class AdminMenuController extends Controller
 
     public function editItem(MenuItem $item)
     {
-        $categories = Category::with('menuItems')->orderBy('name')->get();
+        $categories = Category::with('menuItems')->orderBy('id')->get();
         return view('admin.menu', [
             'categories' => $categories,
             'editItem' => $item
@@ -138,7 +200,7 @@ class AdminMenuController extends Controller
         if (Auth::user()->roles_id == 1) {
             abort(403, 'No autorizado.');
         }
-        $categories = Category::with('menuItems')->orderBy('name')->get();
+        $categories = Category::with('menuItems')->orderBy('id')->get();
         return view('admin.menu', compact('categories'));
     }
 }

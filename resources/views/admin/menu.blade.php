@@ -3,6 +3,8 @@
 @section('admin_content')
 <link rel="stylesheet" href="{{ asset('css/admin-menu.css') }}">
 <link rel="stylesheet" href="{{ asset('css/delete-modal.css') }}">
+<!-- SortableJS para drag and drop -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
 <div class="main-content">
     <!-- HEADER DE PÁGINA -->
@@ -79,7 +81,12 @@
         <!-- Lista de categorías -->
         <div class="category-list" id="listaCategorias">
             @foreach($categories as $cat)
-            <div class="category-item">
+            <div class="category-item" data-id="{{ $cat->id }}">
+                @if(in_array(Auth::user()->roles_id, [3, 4]))
+                <div class="drag-handle" title="Arrastrar para reordenar">
+                    <i class="fas fa-grip-vertical"></i>
+                </div>
+                @endif
                 <div class="category-content">
                     <div class="category-name">{{ $cat->name }}</div>
                     <div class="category-desc">{{ $cat->description ?? 'Sin descripción' }}</div>
@@ -431,5 +438,56 @@ filterDishButtons.forEach(button => {
 
 // Inicializar contador
 updateDishCounter();
+
+// ========== DRAG AND DROP PARA CATEGORÍAS ==========
+@if(in_array(Auth::user()->roles_id, [3, 4]))
+const categoryList = document.getElementById('listaCategorias');
+
+if (categoryList) {
+    const sortable = new Sortable(categoryList, {
+        animation: 150,
+        handle: '.drag-handle',
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function(evt) {
+            // Obtener el nuevo orden de IDs
+            const items = categoryList.querySelectorAll('.category-item');
+            const order = Array.from(items).map(item => item.getAttribute('data-id'));
+            
+            // Enviar el nuevo orden al servidor
+            fetch('{{ route("admin.menu.category.reorder") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ order: order })
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (data.success) {
+                    console.log('Orden actualizado correctamente');
+                    // Recargar la página para ver los cambios
+                    location.reload();
+                } else {
+                    console.error('Error al actualizar el orden:', data.message);
+                    alert('Error al actualizar el orden: ' + (data.message || 'Error desconocido'));
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error completo:', error);
+                alert('Error de conexión: ' + error.message);
+                location.reload();
+            });
+        }
+    });
+}
+@endif
 </script>
 @endsection

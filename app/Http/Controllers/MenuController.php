@@ -13,8 +13,8 @@ class MenuController extends Controller
     public function index()
     {
         $categories = Category::with(['menuItems' => function($q) {
-            $q->orderBy('name');
-        }])->orderBy('name')->get();
+            $q->orderBy('id');
+        }])->orderBy('id')->get();
         return view('welcome', compact('categories'));
     }
 }

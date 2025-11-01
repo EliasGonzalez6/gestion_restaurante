@@ -238,12 +238,17 @@
 
 .category-item {
     background: var(--crema);
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 2rem 1.5rem; /* top right bottom left - más espacio abajo */
     border-radius: 12px;
     transition: all 0.3s ease;
     border: 2px solid transparent;
     position: relative;
-    min-height: 120px;
+    min-height: 140px; /* Aumentado para dar más espacio a los botones */
+    cursor: grab;
+}
+
+.category-item:active {
+    cursor: grabbing;
 }
 
 .category-item:hover {
@@ -253,8 +258,52 @@
     background: white;
 }
 
+/* Drag handle (icono para arrastrar) */
+.drag-handle {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--beige);
+    font-size: 1.2rem;
+    cursor: grab;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.drag-handle:hover {
+    color: var(--dorado);
+    transform: scale(1.1);
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+/* Estados de SortableJS */
+.sortable-ghost {
+    opacity: 0.4;
+    background: var(--dorado) !important;
+    border: 2px dashed var(--vinotinto) !important;
+}
+
+.sortable-chosen {
+    box-shadow: 0 10px 30px rgba(125, 25, 53, 0.3) !important;
+    transform: scale(1.05) !important;
+}
+
+.sortable-drag {
+    opacity: 0.8;
+    transform: rotate(3deg);
+}
+
 .category-content {
     padding-right: 55px;
+    padding-left: 15px; /* Espacio para el icono de arrastre */
 }
 
 .category-name {

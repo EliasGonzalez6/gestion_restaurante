@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/menu/category/{category}/edit', [AdminMenuController::class, 'editCategory'])->name('admin.menu.category.edit');
     Route::put('/admin/menu/category/{category}', [AdminMenuController::class, 'updateCategory'])->name('admin.menu.category.update');
     Route::delete('/admin/menu/category/{category}', [AdminMenuController::class, 'destroyCategory'])->name('admin.menu.category.destroy');
+    Route::post('/admin/menu/category/reorder', [AdminMenuController::class, 'reorderCategories'])->name('admin.menu.category.reorder');
 
     // Platos
     Route::post('/admin/menu/item', [AdminMenuController::class, 'storeItem'])->name('admin.menu.item.store');
