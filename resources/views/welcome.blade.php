@@ -89,7 +89,7 @@
                                     </div>
                                     <p class="dish-description small">{{ $item->description }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="dish-price fw-bold">${{ number_format($item->price, 2) }}</span>
+                                        <span class="dish-price fw-bold">${{ number_format($item->price, 0, ',', '.') }}</span>
                                     </div>
                                 </div>
                             </div>

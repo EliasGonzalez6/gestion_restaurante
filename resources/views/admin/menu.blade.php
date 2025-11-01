@@ -274,7 +274,7 @@
                                 <span class="dish-desc-table">{{ $item->description ?? 'Sin descripción' }}</span>
                             </td>
                             <td>
-                                <strong class="dish-price-table">${{ number_format($item->price, 2) }}</strong>
+                                <strong class="dish-price-table">${{ number_format($item->price, 0, ',', '.') }}</strong>
                             </td>
                             <td>
                                 <div class="status-container">
