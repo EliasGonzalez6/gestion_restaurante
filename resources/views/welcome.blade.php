@@ -19,15 +19,15 @@
     @include('partials.navbar')
 
     {{-- CARRUSEL --}}
-    <div id="heroCarousel" class="carousel slide hero-section mb-4 position-relative" data-bs-ride="carousel" style="top: 0;">
+    <div id="heroCarousel" class="carousel slide hero-section mb-4 position-relative" data-bs-ride="carousel" data-bs-interval="3000" style="top: 0;">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('{{ asset('storage/photos/local1.jpg') }}');">
+            <div class="carousel-item active" data-bs-interval="3000" style="background-image: url('{{ asset('storage/photos/local1.jpg') }}');">
                 <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
                     <h1 class="display-5 fw-bold text-light mb-3">La mejor comida venezolana en Argentina</h1>
                     <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Explora nuestro menú</a>
                 </div>
             </div>
-            <div class="carousel-item" style="background-image: url('{{ asset('storage/photos/locall.jpg') }}');">
+            <div class="carousel-item" data-bs-interval="3000" style="background-image: url('{{ asset('storage/photos/locall.jpg') }}');">
                 <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
                     <h1 class="display-6 fw-bold text-light mb-3">Re Chévere, el sabor que nos une</h1>
                     <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Ver especialidades</a>
