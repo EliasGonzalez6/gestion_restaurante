@@ -9,7 +9,7 @@
 
 /* Fondo general */
 body {
-    background: url('/storage/photos/fondologin.jpg') center/cover no-repeat fixed;
+    background: url('../storage/photos/fondologin.jpg') center/cover no-repeat fixed;
     font-family: 'Montserrat', sans-serif;
     color: var(--crema);
     display: flex;
