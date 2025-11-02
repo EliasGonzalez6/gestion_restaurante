@@ -23,13 +23,13 @@
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="3000" style="background-image: url('{{ asset('storage/photos/local1.jpg') }}');">
                 <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
-                    <h1 class="display-5 fw-bold text-light mb-3">La mejor comida venezolana en Argentina</h1>
+                    <h1 class="display-5 fw-bold text-light mb-3">Re Chévere, el sabor que nos une</h1>
                     <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Explora nuestro menú</a>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="3000" style="background-image: url('{{ asset('storage/photos/locall.jpg') }}');">
                 <div class="hero-content text-center d-flex flex-column justify-content-center align-items-center h-100">
-                    <h1 class="display-6 fw-bold text-light mb-3">Re Chévere, el sabor que nos une</h1>
+                    <h1 class="display-6 fw-bold text-light mb-3">Lo mejor de la comida venezolana en Buenos Aires</h1>
                     <a href="#menu" class="btn btn-warning px-4 py-2 fw-semibold">Ver especialidades</a>
                 </div>
             </div>
