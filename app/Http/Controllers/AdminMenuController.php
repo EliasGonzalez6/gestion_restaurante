@@ -113,7 +113,18 @@ class AdminMenuController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|max:10240',
+        ], [
+            'category_id.required' => 'Debes seleccionar una categoría',
+            'category_id.exists' => 'La categoría seleccionada no es válida',
+            'name.required' => 'El nombre del plato es obligatorio',
+            'name.max' => 'El nombre no puede tener más de 100 caracteres',
+            'description.max' => 'La descripción no puede tener más de 255 caracteres',
+            'price.required' => 'El precio es obligatorio',
+            'price.numeric' => 'El precio debe ser un número válido',
+            'price.min' => 'El precio no puede ser negativo',
+            'photo.image' => 'El archivo debe ser una imagen válida (JPG, JPEG, PNG)',
+            'photo.max' => 'La imagen no puede superar los 10MB de tamaño',
         ]);
         $data = $request->only('category_id', 'name', 'description', 'price');
         if ($request->hasFile('photo')) {
@@ -141,7 +152,18 @@ class AdminMenuController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|max:10240',
+        ], [
+            'category_id.required' => 'Debes seleccionar una categoría',
+            'category_id.exists' => 'La categoría seleccionada no es válida',
+            'name.required' => 'El nombre del plato es obligatorio',
+            'name.max' => 'El nombre no puede tener más de 100 caracteres',
+            'description.max' => 'La descripción no puede tener más de 255 caracteres',
+            'price.required' => 'El precio es obligatorio',
+            'price.numeric' => 'El precio debe ser un número válido',
+            'price.min' => 'El precio no puede ser negativo',
+            'photo.image' => 'El archivo debe ser una imagen válida (JPG, JPEG, PNG)',
+            'photo.max' => 'La imagen no puede superar los 10MB de tamaño',
         ]);
         $data = $request->only('category_id', 'name', 'description', 'price');
         if ($request->hasFile('photo')) {

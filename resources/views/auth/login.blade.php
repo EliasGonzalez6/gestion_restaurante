@@ -17,13 +17,19 @@
         @csrf
         <div class="mb-3">
             <label><i class="fa fa-envelope"></i> Email</label>
-            <input type="email" name="email" class="form-control" required placeholder="tu@ejemplo.com">
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required placeholder="tu@ejemplo.com">
         </div>
 
         <div class="mb-3">
             <label><i class="fa fa-lock"></i> Contraseña</label>
             <input type="password" name="password" class="form-control" required placeholder="••••••••">
         </div>
+
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <i class="fa fa-exclamation-triangle"></i> {{ $errors->first() }}
+            </div>
+        @endif
 
         <button type="submit" class="btn btn-success">Entrar</button>
     </form>

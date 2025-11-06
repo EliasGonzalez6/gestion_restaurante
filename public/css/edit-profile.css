@@ -71,9 +71,9 @@ body {
    ALERTA INFORMATIVA
    ============================= */
 .edit-profile-alert {
-    background: rgba(45,95,63,0.1);
-    color: var(--verde);
-    border-left: 4px solid var(--verde);
+    background: #f5f1e8;
+    color: #7d1935;
+    border-left: 4px solid #d4af37;
     padding: 15px 20px;
     border-radius: 12px;
     display: flex;

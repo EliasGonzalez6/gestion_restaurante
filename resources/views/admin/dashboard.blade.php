@@ -3,6 +3,11 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/admin-sidebar.css') }}">
 
+@php
+    // Obtener cantidad de reservas pendientes
+    $pendingReservationsCount = \App\Models\Reservation::where('status', 'pendiente')->count();
+@endphp
+
 <!-- Sidebar -->
 <div class="sidebar">
     <ul class="sidebar-menu">
@@ -21,9 +26,12 @@
             </a>
         </li>
         <li>
-            <a href="#" class="menu-link disabled">
+            <a href="{{ route('admin.reservations.index') }}" class="menu-link {{ request()->routeIs('admin.reservations.*') ? 'active' : '' }}">
                 <i class="fas fa-calendar-alt"></i>
                 <span>Reservas</span>
+                @if($pendingReservationsCount > 0)
+                    <span class="notification-badge">{{ $pendingReservationsCount }}</span>
+                @endif
             </a>
         </li>
         <li>

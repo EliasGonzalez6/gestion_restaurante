@@ -44,4 +44,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Rol::class, 'roles_id');
     }
+
+    // Relación con reservas
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id');
+    }
+
+    // Relación con reservas que ha gestionado como administrador
+    public function managedReservations()
+    {
+        return $this->hasMany(Reservation::class, 'managed_by');
+    }
 }

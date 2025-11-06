@@ -1,0 +1,208 @@
+:root {
+    --vinotinto: #7d1935;
+    --negro: #1a1a1a;
+    --crema: #f5f1e8;
+    --dorado: #d4af37;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-image: url('/storage/photos/local1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.4), rgba(125,25,53,0.6));
+    z-index: -1;
+}
+
+.reservation-container {
+    min-height: 100vh;
+    position: relative;
+    padding-top: 150px;
+    padding-bottom: 40px;
+}
+
+.reservation-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.reservation-card .card-header {
+    background: var(--vinotinto);
+    color: white;
+    padding: 2.5rem 2rem;
+}
+
+.reservation-card .card-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.reservation-card .card-body {
+    padding: 2.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 0.5rem;
+}
+
+.form-label i {
+    color: var(--vinotinto);
+    margin-right: 0.5rem;
+}
+
+.form-control,
+.form-select {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--vinotinto);
+    box-shadow: 0 0 0 4px rgba(125, 25, 53, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--dorado), var(--vinotinto));
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+    background: var(--dorado);
+    color: var(--negro);
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--negro);
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: var(--negro);
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--negro);
+    color: white;
+    transform: translateY(-2px);
+    border-color: var(--negro);
+}
+
+.alert {
+    border-radius: 12px;
+    border: none;
+}
+
+.alert-info {
+    background: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reservation-container {
+        padding-top: 120px;
+    }
+
+    .reservation-card .card-header {
+        padding: 2rem 1.5rem;
+    }
+
+    .reservation-card .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Welcome Card Styles */
+.reservation-welcome-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 3rem 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.reservation-icon {
+    font-size: 5rem;
+    color: var(--vinotinto);
+    margin-bottom: 1rem;
+}
+
+.reservation-benefits {
+    margin: 2rem 0;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(135deg, #f5f1e8 0%, #ffffff 100%);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(125, 25, 53, 0.15);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    color: var(--dorado);
+    margin-bottom: 1rem;
+}
+
+.benefit-card h5 {
+    color: var(--negro);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.auth-required-box {
+    background: rgba(245, 241, 232, 0.3);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px dashed var(--vinotinto);
+}
+
+@media (max-width: 768px) {
+    .reservation-welcome-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .reservation-icon {
+        font-size: 3.5rem;
+    }
+}

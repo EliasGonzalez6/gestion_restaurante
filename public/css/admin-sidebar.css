@@ -169,6 +169,34 @@
     color: var(--vinotinto) !important;
 }
 
+/* ========== BADGE DE NOTIFICACIÓN ========== */
+.notification-badge {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--vinotinto);
+    color: var(--dorado);
+    min-width: 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(125, 25, 53, 0.3);
+    border: 2px solid var(--dorado);
+    margin-left: 0.75rem;
+}
+
+/* Ajustar el espaciado del texto cuando hay badge */
+.menu-link:has(.notification-badge) span:first-of-type {
+    margin-right: 3rem;
+}
+
 /* ========== RESPONSIVE (MÓVILES) ========== */
 @media (max-width: 992px) {
     .sidebar {

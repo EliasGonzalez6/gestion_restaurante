@@ -413,3 +413,277 @@ main.py-4 {
     }
 }
 
+/* ===================================
+   SECCIÓN DE RESERVAS EN PERFIL
+   =================================== */
+
+/* Quitar el gradiente de la tarjeta de reservas */
+.reservations-block .profile-header-gradient {
+    display: none;
+}
+
+.reservations-section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 0.5rem;
+}
+
+.reservations-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #6b1c3d;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.reservations-main-title i {
+    color: #d4af37;
+}
+
+.reservations-main-subtitle {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.reservation-card-item {
+    transition: all 0.3s ease;
+    border-left: 4px solid #d4af37;
+    padding: 2.5rem 3rem !important;
+}
+
+.reservation-card-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor principal de la tarjeta - Todo horizontal y centrado */
+.reservation-card-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* Cada item de información */
+.reservation-info-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex: 1;
+    min-width: 220px;
+}
+
+/* Item de observaciones ocupa más espacio si existe */
+.reservation-observations-item {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* Item de acciones */
+.reservation-actions-item {
+    flex: 0 0 auto;
+    min-width: auto;
+}
+
+.reservation-icon {
+    font-size: 2.3rem;
+    color: #d4af37;
+    min-width: 40px;
+    text-align: center;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.reservation-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reservation-value {
+    font-size: 1.15rem;
+    color: #1a1a1a;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.reservation-status-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reservation-badge-status {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #000;
+}
+
+.badge-success {
+    background: linear-gradient(135deg, #d4af37 0%, #c19b2e 100%);
+    color: #1a1a1a;
+}
+
+.badge-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+}
+
+.badge-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    color: white;
+}
+
+.reservation-cancel-button {
+    background: transparent;
+    border: 2px solid #6b1c3d;
+    color: #6b1c3d;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.reservation-cancel-button:hover {
+    background: #6b1c3d;
+    border-color: #6b1c3d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 28, 61, 0.3);
+}
+
+.reservation-cancel-form {
+    display: flex;
+    align-items: center;
+}
+
+.empty-state {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    color: #d4af37;
+    opacity: 0.5;
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.empty-state-title {
+    color: #6b1c3d;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.empty-state-text {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.empty-state-button {
+    background-color: white;
+    color: #1a1a1a;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 2px solid #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(26, 26, 26, 0.15);
+}
+
+.empty-state-button:hover {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.empty-state-button i {
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .reservations-main-title {
+        font-size: 1.8rem;
+    }
+
+    .reservations-main-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .reservation-card-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .reservation-info-item {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .reservation-observations-item {
+        min-width: auto;
+    }
+
+    .reservation-actions-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .reservation-cancel-form {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .reservation-cancel-button {
+        width: auto;
+        min-width: 200px;
+    }
+}

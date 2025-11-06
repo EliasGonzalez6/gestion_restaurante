@@ -35,6 +35,11 @@
                     @endif
                 </li>
 
+                {{-- Botón Reservar --}}
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="{{ route('reservations.index') }}">Reservar</a>
+                </li>
+
                 @guest
                     <li class="nav-item mx-2">
                         <a class="nav-link whitespace-nowrap" href="{{ route('register') }}">Registrarse</a>

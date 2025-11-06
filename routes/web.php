@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Admin\AdminReservationController;
 
 // Página de inicio
 Route::get('/', [MenuController::class, 'index'])->name('welcome');
@@ -48,4 +50,21 @@ Route::middleware(['auth'])->group(function () {
     // Ruta para ver el perfil
     \App\Http\Controllers\ProfileController::class;
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+
+    // Reservas (Cliente)
+    Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+    Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+    Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('/reservations/my-reservations', [ReservationController::class, 'myReservations'])->name('reservations.my');
+    Route::post('/reservations/{reservation}/cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
+
+    // Administración de Reservas (Admin/Supervisor/Gerente)
+    Route::prefix('admin/reservations')->name('admin.reservations.')->group(function () {
+        Route::get('/', [AdminReservationController::class, 'index'])->name('index');
+        Route::get('/{reservation}', [AdminReservationController::class, 'show'])->name('show');
+        Route::post('/{reservation}/accept', [AdminReservationController::class, 'accept'])->name('accept');
+        Route::post('/{reservation}/reject', [AdminReservationController::class, 'reject'])->name('reject');
+        Route::post('/{reservation}/mark-completed', [AdminReservationController::class, 'markCompleted'])->name('markCompleted');
+        Route::post('/{reservation}/mark-not-completed', [AdminReservationController::class, 'markNotCompleted'])->name('markNotCompleted');
+    });
 });

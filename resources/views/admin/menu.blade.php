@@ -124,36 +124,58 @@
             @if(isset($editItem))
                 @method('PUT')
             @endif
+
+            <!-- Mostrar errores generales -->
+            @if($errors->any())
+                <div class="alert alert-danger mb-3">
+                    <strong><i class="fas fa-exclamation-triangle"></i> Error al guardar el plato:</strong>
+                    <ul class="mb-0 mt-2">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Categoría *</label>
-                    <select class="form-select" name="category_id" id="categoriaPlato" required>
+                    <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="categoriaPlato" required>
                         <option value="" selected>Seleccionar categoría</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}" @if(isset($editItem) && $editItem->category_id == $cat->id) selected @endif>{{ $cat->name }}</option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Nombre del Plato *</label>
                     <input 
                         type="text" 
                         name="name"
-                        class="form-control" 
+                        class="form-control @error('name') is-invalid @enderror" 
                         id="nombrePlato"
-                        value="@if(isset($editItem)){{ $editItem->name }}@endif"
+                        value="@if(isset($editItem)){{ $editItem->name }}@else{{ old('name') }}@endif"
                         placeholder="Ej: Arepa Reina Pepiada"
                         required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Descripción (Opcional)</label>
                     <input 
                         type="text" 
                         name="description"
-                        class="form-control" 
+                        class="form-control @error('description') is-invalid @enderror" 
                         id="descripcionPlato"
-                        value="@if(isset($editItem)){{ $editItem->description }}@endif"
+                        value="@if(isset($editItem)){{ $editItem->description }}@else{{ old('description') }}@endif"
                         placeholder="Descripción breve">
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Precio *</label>
@@ -162,26 +184,33 @@
                         <input 
                             type="number" 
                             name="price"
-                            class="form-control" 
+                            class="form-control @error('price') is-invalid @enderror" 
                             id="precioPlato"
-                            value="@if(isset($editItem)){{ $editItem->price }}@endif"
+                            value="@if(isset($editItem)){{ $editItem->price }}@else{{ old('price') }}@endif"
                             placeholder="0.00"
                             step="0.01"
                             min="0"
                             required>
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-8 mb-3">
-                    <label class="form-label">Foto del Plato @if(!isset($editItem))@endif</label>
+                    <label class="form-label">Foto del Plato (Opcional)</label>
                     <input 
                         type="file" 
                         name="photo"
-                        class="form-control" 
+                        class="form-control @error('photo') is-invalid @enderror" 
                         id="fotoPlato"
-                        accept="image/*">
+                        accept="image/jpeg,image/jpg,image/png">
                     @if(isset($editItem) && $editItem->photo)
-                        <small class="text-muted">Foto actual: {{ basename($editItem->photo) }}</small>
+                        <small class="text-muted d-block mt-1">Foto actual: {{ basename($editItem->photo) }}</small>
                     @endif
+                    <small class="text-muted d-block mt-1">Formatos permitidos: JPG, JPEG, PNG. Tamaño máximo: 10MB</small>
+                    @error('photo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-4 mb-3 d-flex align-items-end">
                     <button type="submit" class="btn-primary-custom w-100" id="btnSubmitPlato">

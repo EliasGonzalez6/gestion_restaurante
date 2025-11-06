@@ -22,17 +22,6 @@
     @include('partials.navbar')
 
     <main class="{{ request()->routeIs('users.*') || request()->routeIs('admin.*') ? '' : 'py-4' }}">
-        @if ($errors->any())
-            <div class="container">
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
         @yield('content')
     </main>
 </body>
