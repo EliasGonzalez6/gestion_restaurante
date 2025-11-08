@@ -18,7 +18,7 @@
             @if($user->photo)
                 <img src="{{ asset('storage/'.$user->photo) }}" class="current-photo" id="currentPhoto">
             @else
-                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=400&h=400" class="current-photo" id="currentPhoto">
+                <img src="{{ asset('storage/photos/fotousuario.png') }}" class="current-photo" id="currentPhoto">
             @endif
             <div class="d-flex flex-column align-items-center mt-2">
                 <label class="photo-upload-btn w-auto">
