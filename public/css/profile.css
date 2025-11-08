@@ -530,7 +530,7 @@ main.py-4 {
     display: inline-block;
     padding: 0.7rem 1.8rem;
     border-radius: 25px;
-    font-size: 0.95rem;
+    font-size: 0.70rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -538,17 +538,17 @@ main.py-4 {
 }
 
 .badge-warning {
-    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
-    color: #000;
+    background: linear-gradient(135deg, #ffc107 0%, #efce81 100%);
+    color: #fff;
 }
 
 .badge-success {
-    background: linear-gradient(135deg, #d4af37 0%, #c19b2e 100%);
-    color: #1a1a1a;
+    background: linear-gradient(135deg, #198754 0%, #34b076 100%);
+    color: #fff;
 }
 
 .badge-danger {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #ed7f8a 100%);
     color: white;
 }
 

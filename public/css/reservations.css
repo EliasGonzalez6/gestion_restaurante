@@ -3,6 +3,7 @@
     --negro: #1a1a1a;
     --crema: #f5f1e8;
     --dorado: #d4af37;
+    --success: #198754;
 }
 
 body {
@@ -85,7 +86,7 @@ body::before {
     box-shadow: 0 0 0 4px rgba(125, 25, 53, 0.1);
 }
 
-.btn-primary {
+/*.btn-primary {
     background: linear-gradient(135deg, var(--dorado), var(--vinotinto));
     border: none;
     border-radius: 12px;
@@ -98,9 +99,28 @@ body::before {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 8px 20px #585858;
     background: var(--dorado);
     color: var(--negro);
+    color : linear-gradient(135deg, var(--dorado), var(--vinotinto));
+    background: #fff;
+}*/
+
+.btn-primary {
+    background: white;    
+    border: 2px solid var(--success);
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: var(--success);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);    
+    background: var(--success);
+    color: white;    
+    border: 2px solid var(--success);
 }
 
 .btn-outline-secondary {

@@ -8,6 +8,7 @@
     --crema: #f5f1e8;
     --dorado: #d4af37;
     --beige: #c9b99b;
+    --success: #198754;
 }
 
 /* ========== CONTENIDO PRINCIPAL ========== */
@@ -90,7 +91,7 @@
 }
 
 .badge-count.badge-success {
-    background: var(--dorado);
+    background: var(--success);
     color: var(--negro);
 }
 
