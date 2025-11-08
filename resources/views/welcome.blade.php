@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+        <link rel="icon" href="{{ asset('/storage/photos/Logo.png') }}">
 </head>
 <body>
 
