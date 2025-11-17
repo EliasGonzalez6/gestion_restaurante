@@ -51,7 +51,7 @@ class UserController extends BaseController
             'dni'=>'nullable|string|max:20',
             'phone'=>'nullable|string|max:20',
             'address'=>'nullable|string|max:255',
-            'photo'=>'nullable|image|max:2048',
+            'photo'=>'nullable|image|max:10240',
             'roles_id'=>'required|exists:roles,id',
         ];
         if (Auth::user()->roles_id == 3) {
@@ -101,7 +101,7 @@ class UserController extends BaseController
             'dni'=>'nullable|string|max:20',
             'phone'=>'nullable|string|max:20',
             'address'=>'nullable|string|max:255',
-            'photo'=>'nullable|image|max:2048',
+            'photo'=>'nullable|image|max:10240',
             'roles_id'=>'required|exists:roles,id',
         ];
         if (Auth::user()->roles_id == 3) {

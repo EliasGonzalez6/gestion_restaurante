@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'dni' => 'nullable|string|max:20',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|max:2048', // solo imágenes
+            'photo' => 'nullable|image|max:10240', // solo imágenes
         ]);
 
         $photoPath = null;

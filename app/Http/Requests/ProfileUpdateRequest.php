@@ -28,7 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             'dni' => ['nullable', 'string', 'max:20'],
             'phone' => ['nullable', 'string', 'max:20'],
             'address' => ['nullable', 'string', 'max:255'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image', 'max:10240'],
         ];
     }
 }

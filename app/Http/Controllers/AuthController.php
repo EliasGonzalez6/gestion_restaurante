@@ -63,7 +63,7 @@ class AuthController extends Controller
             'dni'      => 'required|string|min:7|max:10|unique:users|regex:/^[0-9]+$/',
             'phone'    => 'required|string|min:8|max:20|regex:/^[\+]?[0-9\s\-()]+$/',
             'address'  => 'required|string|min:5|max:255',
-            'photo'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048|dimensions:min_width=100,min_height=100,max_width=4000,max_height=4000',
+            'photo'    => 'nullable|image|mimes:jpg,jpeg,png|max:10240|dimensions:min_width=100,min_height=100,max_width=4000,max_height=4000',
         ], [
             // Mensajes personalizados
             'name.required' => 'El nombre es obligatorio.',

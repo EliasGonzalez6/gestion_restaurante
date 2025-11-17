@@ -176,10 +176,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Validar tamaño (2MB = 2048KB)
-        if (file.size > 2048 * 1024) {
-            this.setCustomValidity('La imagen no puede superar los 2MB');
-            previewDiv.innerHTML = '<div class="alert alert-danger mt-2">La imagen es demasiado grande. Máximo 2MB.</div>';
+        // Validar tamaño (10MB = 10240KB)
+        if (file.size > 10240 * 1024) {
+            this.setCustomValidity('La imagen no puede superar los 10MB');
+            previewDiv.innerHTML = '<div class="alert alert-danger mt-2">La imagen es demasiado grande. Máximo 10MB.</div>';
             return;
         }
 

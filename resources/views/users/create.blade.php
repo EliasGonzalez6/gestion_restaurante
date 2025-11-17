@@ -47,7 +47,7 @@
                                    accept="image/*" 
                                    onchange="previewPhoto(event)" 
                                    style="display: none;">
-                            <p class="upload-hint">JPG, PNG o GIF. Tamaño máximo 2MB</p>
+                            <p class="upload-hint">JPG, PNG o GIF. Tamaño máximo 10MB</p>
                         </div>
                     </div>
                 </div>
