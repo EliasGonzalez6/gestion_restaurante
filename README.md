@@ -169,3 +169,9 @@ Agradecemos especialmente a:
   © 2025 | Instituto de Formación Técnica Superior N.º 18
   
 </div>
+
+<div align="center">
+  
+  ### [Ver presentación final](https://www.canva.com/design/DAG4B_b5w5A/daxhOzZX-N6BZu_tAIwJFQ/edit?utm_content=DAG4B_b5w5A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+  
+</div>
