@@ -309,6 +309,21 @@ button.btn-cancel:hover, button.btn-cancel:active {
         width: 100%;
         justify-content: center;
     }
+    /* Stack foto y botón centrados en móvil */
+    .profile-photo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .profile-photo-section .photo-preview-wrapper { margin-bottom: 1rem; }
+    .profile-photo-section .photo-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profile-photo-section .photo-upload-btn { justify-content: center; }
 }
 /* =============================
    FIN DE ESTILOS PREMIUM
