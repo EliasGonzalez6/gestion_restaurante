@@ -94,6 +94,9 @@
         </div>
     </form>
 <script>
+// Guardar foto original para restaurar al cancelar
+let originalPhotoSrc = '';
+
 // Hover overlay
 document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.querySelector('.photo-overlay');
@@ -104,6 +107,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const input = document.getElementById('photoInput');
   if (input) input.addEventListener('change', previewPhoto);
+  
+  // Guardar src original de la foto
+  const img = document.getElementById('photoPreview');
+  if (img) originalPhotoSrc = img.src;
+  
+  // Restaurar foto original al cancelar
+  const cancelBtn = document.querySelector('.btn-cancel');
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', function(e) {
+      const img = document.getElementById('photoPreview');
+      const input = document.getElementById('photoInput');
+      if (img && originalPhotoSrc) {
+        img.src = originalPhotoSrc;
+      }
+      if (input) {
+        input.value = '';
+      }
+    });
+  }
 });
 
 function previewPhoto(e) {
