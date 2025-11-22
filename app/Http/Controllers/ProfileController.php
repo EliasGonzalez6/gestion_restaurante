@@ -42,7 +42,7 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos','public');
+            $photoPath = $request->file('photo')->store('photos',env('APP_PUBLIC_PATH'));
             $data['photo'] = $photoPath;
         }
 

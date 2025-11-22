@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos','public');
+            $photoPath = $request->file('photo')->store('photos',env('APP_PUBLIC_PATH'));
         }
 
         User::create([

@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Cambiar el directorio público a public_html
+        if(env('APP_PUBLIC_PATH') === 'public_html') {
+            $this->app->bind('path.public', function() {
+                return base_path('public_html');
+            });
+        }
     }
 }

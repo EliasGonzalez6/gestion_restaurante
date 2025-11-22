@@ -65,7 +65,7 @@ class UserController extends BaseController
 
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos','public');
+            $photoPath = $request->file('photo')->store('photos',env('APP_PUBLIC_PATH'));
         }
 
         User::create([
@@ -116,7 +116,7 @@ class UserController extends BaseController
     $data = $request->only(['name','email','dni','phone','address','roles_id']);
     $data['email'] = strtolower($data['email']);
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos','public');
+            $photoPath = $request->file('photo')->store('photos',env('APP_PUBLIC_PATH'));
             $data['photo'] = $photoPath;
         }
         $user->update($data);

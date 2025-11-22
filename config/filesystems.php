@@ -47,6 +47,16 @@ return [
             'report' => false,
         ],
 
+        // Disco para almacenar archivos directamente en public_html
+        'public_html' => [
+            'driver' => 'local',
+            'root' => base_path('public_html/storage'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -74,7 +84,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        base_path('public_html/storage') => storage_path('app/public'),
     ],
 
 ];

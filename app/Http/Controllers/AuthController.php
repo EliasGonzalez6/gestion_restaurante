@@ -94,7 +94,7 @@ class AuthController extends Controller
         // Manejo de la foto
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('users', 'public');
+            $photoPath = $request->file('photo')->store('users', env('APP_PUBLIC_PATH'));
         }
 
         // Por defecto el rol es cliente (id = 1) si no se asigna otro

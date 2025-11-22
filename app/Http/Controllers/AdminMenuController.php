@@ -128,7 +128,7 @@ class AdminMenuController extends Controller
         ]);
         $data = $request->only('category_id', 'name', 'description', 'price');
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('menu', 'public');
+            $data['photo'] = $request->file('photo')->store('menu', env('APP_PUBLIC_PATH'));
         }
     // $data['is_out'] = false; // No guardar is_out en la base de datos, solo visual
         MenuItem::create($data);
@@ -167,7 +167,7 @@ class AdminMenuController extends Controller
         ]);
         $data = $request->only('category_id', 'name', 'description', 'price');
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('menu', 'public');
+            $data['photo'] = $request->file('photo')->store('menu', env('APP_PUBLIC_PATH'));
         }
         $item->update($data);
         return redirect()->route('admin.menu.index');
