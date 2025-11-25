@@ -96,6 +96,8 @@
 <script>
 // Guardar foto original para restaurar al cancelar
 let originalPhotoSrc = '';
+// Guardar valores originales de todos los campos
+let originalValues = {};
 
 // Hover overlay
 document.addEventListener('DOMContentLoaded', () => {
@@ -112,18 +114,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const img = document.getElementById('photoPreview');
   if (img) originalPhotoSrc = img.src;
   
-  // Restaurar foto original al cancelar
+  // Guardar valores originales de todos los campos del formulario
+  const form = document.querySelector('.edit-profile-form');
+  if (form) {
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="password"]');
+    inputs.forEach(input => {
+      if (input.name && input.name !== 'current_password' && input.name !== 'password' && input.name !== 'password_confirmation') {
+        originalValues[input.name] = input.value;
+      }
+    });
+  }
+  
+  // Restaurar foto y valores originales al cancelar
   const cancelBtn = document.querySelector('.btn-cancel');
   if (cancelBtn) {
     cancelBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Restaurar foto
       const img = document.getElementById('photoPreview');
-      const input = document.getElementById('photoInput');
+      const photoInput = document.getElementById('photoInput');
       if (img && originalPhotoSrc) {
         img.src = originalPhotoSrc;
       }
-      if (input) {
-        input.value = '';
+      if (photoInput) {
+        photoInput.value = '';
       }
+      
+      // Restaurar valores de todos los campos
+      Object.keys(originalValues).forEach(fieldName => {
+        const input = form.querySelector(`input[name="${fieldName}"]`);
+        if (input) {
+          input.value = originalValues[fieldName];
+        }
+      });
+      
+      // Limpiar campos de contraseña
+      const passwordFields = form.querySelectorAll('input[type="password"]');
+      passwordFields.forEach(field => {
+        field.value = '';
+      });
+      
+      // Redirigir después de restaurar
+      setTimeout(() => {
+        window.location.href = "{{ route('profile.show') }}";
+      }, 50);
     });
   }
 });
